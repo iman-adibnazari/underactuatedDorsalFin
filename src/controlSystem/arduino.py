@@ -1,5 +1,5 @@
 import serial
-import time
+import time 
 
 arduino = serial.Serial(port='COM10',   baudrate=115200, timeout=.1)
 
