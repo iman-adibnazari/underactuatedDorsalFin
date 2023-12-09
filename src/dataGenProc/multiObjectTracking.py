@@ -30,7 +30,7 @@ fre=np.arange(0.1,3.0+dfre,dfre)
 
 # Setup helper function for defining tracker
 trackerTypes = ['BOOSTING', 'MIL', 'KCF','TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
- 
+
 def createTrackerByName(trackerType):
   # Create a tracker based on tracker name
   if trackerType == trackerTypes[0]:
