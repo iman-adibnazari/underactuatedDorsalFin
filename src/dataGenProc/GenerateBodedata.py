@@ -84,6 +84,7 @@ for f in fre:
     Mag.append(lpt_Amp/fpt_Amp)
     Phi.append(np.mod(((fpt_ymax_ind-lpt_ymax_ind)/fps)*f*360,360))
 
+
 BodePlot=np.row_stack((np.array(Mag), np.array(Phi)))
 plt.subplot(2,1,1)
 plt.scatter(np.arange(0.1,3+dfre,0.1),BodePlot[0,:])
@@ -91,6 +92,7 @@ plt.scatter(np.arange(0.1,3+dfre,0.1),BodePlot[0,:])
 plt.subplot(2,1,2)
 plt.scatter(np.arange(0.1,3+dfre,0.1),BodePlot[1,:])
 plt.show()
+plt.title("Bode Plot")
 
 #Save Data as a numpy,matlab file
 np.save(outputDataPathDir+"Lpt_BodePlotData.npy",BodePlot)
