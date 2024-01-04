@@ -5,18 +5,18 @@ from random import randint
 import numpy as np
 from scipy.io import savemat
 import serial
-import time 
+import time
 
-arduino = serial.Serial(port='COM6',   baudrate=115200, timeout=.1)
+arduino = serial.Serial(port='COM10',   baudrate=115200, timeout=.1)
 
 
 def write_read(x):
     arduino.write(bytes(x,   'utf-8'))
+    data = arduino.readline()
     # time.sleep(0.05)
     # data = arduino.readline()
     # return data
-    return 0
-
+    return data
 
 import numpy as np
 import cv2 as cv

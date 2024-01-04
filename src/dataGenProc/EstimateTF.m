@@ -24,11 +24,22 @@ C = [0 0 1];
 B = [sys_est.numerator(2); sys_est.numerator(1); 0];
 D = 0;
 
-%[A,B,C,D]=tf2ss(sys_est.numerator, sys_est.denominator); 
+% [A,B,C,D]=tf2ss(sys_est.numerator, sys_est.denominator); 
 sys = ss(A,B,C,D);
 
 h=bodeplot(sys_est,data);
 setoptions(h,'FreqScale','linear','FreqUnits','Hz');
 xlim([0 5]);
 
+%% Continuous to Discrete
+clc
+opts=c2dOptions('Method','zoh');
+sysd = c2d(sys, 0.1,opts);
+step(sysd,'--')
+
+%% Write gain.h
+fileID=fopen('C:\Users\super\Desktop\UCSD\랩인턴\Fish\underactuatedDorsalFin\src\controlSystem\discretecontroller\systemtest.h','w');
+fprintf(fileID,'BLA::Matrix<3, 3> A={%5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f};\r\n',sysd.A);
+fprintf(fileID,'BLA::Matrix<3, 1> B={%5.4f, %5.4f, %5.4f};\r\n',sysd.B);
+fprintf(fileID,'BLA::Matrix<1, 3> C={%5.4f, %5.4f, %5.4f};\r\n',sysd.C);
 
