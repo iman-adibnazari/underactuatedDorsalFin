@@ -21,7 +21,6 @@ void setup() {
 }
 
 void  loop() {
-  
   while (!Serial.available());
   y(0) = Serial.readString().toInt();
   t = millis()/1000.0;
@@ -38,5 +37,4 @@ void  loop() {
   x_old = x;
   t_old = t;
   }
-  
 }
