@@ -1,12 +1,14 @@
 # Overview
-- Proposing an efficient robot design where, leveraging the physical properties of the fin material, only the front part of the fin is motor-driven to initiate wave propagation along the fin
+- Proposing an efficient fish robot design where, leveraging the physical properties of the dorsal fin material, only the front part of the fin is motor-driven to initiate wave propagation
 - Design a linear quadratic regulator (LQR) and feedforward controller to manage the movement of the fish's fin
 
-# Set up 
-
+# Set up
+Install the packages in requirements.txt 
+`$ pip install -r requirements.txt`
 
 # Robot Assembly
-![Schemetic view of robotic fish.](RoboticFish.png)
+![Schemetic view of robotic fish](RoboticFish.png)
+- 
 
 # Data
 
