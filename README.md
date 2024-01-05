@@ -3,12 +3,20 @@
 - Design a linear quadratic regulator (LQR) and feedforward controller to manage the movement of the fish's fin
 
 # Set up
-Install the packages in requirements.txt 
+Install the packages in requirements.txt
 `$ pip install -r requirements.txt`
 
 # Robot Assembly
 ![Schemetic view of robotic fish](RoboticFish.png)
-- 
+1. Laser cutting acrylic fin ray, fish body-Acrylic Frame, Fiberglass Panel
+2. Build silicone fin using mold embedded with FR4 and fin ray 
+
+3. 3D printing PLA Head Closure 
+'''
+cad\Fish\Body1_L.SLDPRT
+cad\Fish\Body1_R.SLDPRT
+'''
+4. Assemble Savox motor with left Head Closure, Fin with acrylic body frame, 
 
 # Data
 
