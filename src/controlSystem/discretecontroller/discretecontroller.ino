@@ -2,8 +2,9 @@
 #include "systemtest.h"
 using namespace BLA;
 
-float f=1.2; // Hz
-float ang=40; // Maximum angel (Amplitude)
+float f=1; // Hz (reference)
+float ang=10; // Amplitude Angle degrees (reference)
+
 float dt=0.1; // Discrete time step
 float t_old = 0;
 float t;
@@ -26,9 +27,9 @@ void  loop() {
   t = millis()/1000.0;
   x(2,0)=y(0);
 
-  if (t-t_old)>=dt {
+  if ((t-t_old)>=dt) {
   x = A*x_old + B*u_old + L*(y-C*x_old);
-  ref(2,0)=ang*sin(2*3.14*f*t);
+  ref(2,0)=ang*sin(2*3.14*f*t); // Reference data
   u = Kl*(ref-x);
   Serial.print(String(u(0)));
   //change u to pwm

@@ -14,8 +14,6 @@ def write_read(x):
     arduino.write(bytes(x,   'utf-8'))
     data = arduino.readline()
     # time.sleep(0.05)
-    # data = arduino.readline()
-    # return data
     return data
 
 import numpy as np
@@ -30,6 +28,11 @@ if not cap.isOpened():
 ret, frame = cap.read()
 # Select object to track
 roi = cv.selectROI("tracker", frame)
+cv2.rectangle(frame, (int(roi[0]), int(roi[1])), (int(roi[0] + roi[2]), int(roi[1] + roi[3])), (0, 255, 0), 2)
+# Get coordinates of roi center
+roiCenter = (int(roi[0] + roi[2]/2), int(roi[1] + roi[3]/2))
+y_init = int(roiCenter[1])
+
 
 # Create Tracker object
 tracker = cv.TrackerCSRT_create()
@@ -52,12 +55,12 @@ while True:
     # Get coordinates of roi center
     roiCenter = (int(roi[0] + roi[2]/2), int(roi[1] + roi[3]/2))
     # Display y coordinate of center in top right corner
-    cv2.putText(frame, str(roiCenter[1]), (frame.shape[1]-100, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+    cv2.putText(frame, str(roiCenter[1]-y_init), (frame.shape[1]-100, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
     # Draw the center of the roi
     cv2.circle(frame, roiCenter, 5, (0, 0, 255), -1)
 
     # Send y coordinate to arduino
-    value = write_read(str(int(roiCenter[1])))
+    value = write_read(str(int(roiCenter[1]-y_init)))
     print(value)
 
     # Our operations on the frame come here
