@@ -6,7 +6,7 @@
 
 
 # Robot Assembly
-![Schemetic view of robotic fish](Robotic Fish.png)
+![Schemetic view of robotic fish.](RoboticFish.png)
 
 # Data
 
