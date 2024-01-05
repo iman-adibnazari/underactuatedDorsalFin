@@ -29,7 +29,7 @@ cad\Fish\Body1_R.SLDPRT
 
 
 ## Control System Modeling
-![Propulsion of wave through dorsal fin](undulatoryfin.MOV)
+![Propulsion of wave through dorsal fin](undulatoryfin.mp4)
 - Aim to control the wave motion of the undulatory dorsal fin of robotic fish
 - Employed a frequency-response-based control system modeling method
 1. Using Fish's fin top view video data, run src\dataGenProc\multiObjectTracking.py to calculate the fin's each position in time
