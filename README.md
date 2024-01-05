@@ -8,6 +8,7 @@ Install necessary packages listed in requirements.txt:
 
 ## Robot Assembly
 ![Schemetic view of robotic fish](RoboticFish.png)
+![Propulsion of wave through dorsal fin](undulatoryfin.gif)
 1. Laser-cut acrylic fin ray, fish body acrylic Frame, Fiberglass Panel
 ```
 cad\Fish\FinRay.SLDPRT
@@ -28,11 +29,7 @@ cad\Fish\Body1_R.SLDPRT
 - Attach fin with acrylic body frame
 - Combine left head closure and acrylic body frame with fin 
 
-## Data
-
-
 ## Control System Modeling
-![Propulsion of wave through dorsal fin](undulatoryfin.gif)
 Goal: Aim to control the wave motion of the undulatory dorsal fin of robotic fish
 Approach: Employing a frequency-response-based control system modeling method
 1. Use top-view video data of the fish's fin, run `src\dataGenProc\multiObjectTracking.py` to calculate each position of the fin over time
