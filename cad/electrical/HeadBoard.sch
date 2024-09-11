@@ -165,11 +165,11 @@
 <wire x1="0" y1="17.78" x2="20.32" y2="17.78" width="0.127" layer="21"/>
 <wire x1="20.32" y1="17.78" x2="20.32" y2="0" width="0.127" layer="21"/>
 <wire x1="20.32" y1="0" x2="0" y2="0" width="0.127" layer="21"/>
-<pad name="OUT" x="1.27" y="1.27" drill="0.6"/>
-<pad name="GND@1" x="1.27" y="3.81" drill="0.6"/>
-<pad name="GND@2" x="1.27" y="6.35" drill="0.6"/>
-<pad name="IN" x="1.27" y="8.89" drill="0.6"/>
-<pad name="EN" x="1.27" y="11.43" drill="0.6"/>
+<pad name="OUT" x="1.27" y="1.27" drill="1.0414" diameter="1.778"/>
+<pad name="GND@1" x="1.27" y="3.81" drill="1.0414" diameter="1.778"/>
+<pad name="GND@2" x="1.27" y="6.35" drill="1.0414" diameter="1.778"/>
+<pad name="IN" x="1.27" y="8.89" drill="1.0414" diameter="1.778"/>
+<pad name="EN" x="1.27" y="11.43" drill="1.0414" diameter="1.778"/>
 <text x="1.27" y="19.05" size="1.27" layer="21">&gt;Name</text>
 <text x="8.89" y="19.05" size="1.27" layer="21">&gt;VALUE</text>
 <text x="3.81" y="1.27" size="0.8128" layer="21" rot="R45">OUT</text>
@@ -208,15 +208,17 @@
 </package>
 <package name="WAVESHARE_SN65HVD230">
 <wire x1="0" y1="0" x2="0" y2="10.033" width="0.127" layer="21"/>
-<wire x1="0" y1="10.033" x2="37.973" y2="10.033" width="0.127" layer="21"/>
-<wire x1="37.973" y1="10.033" x2="37.973" y2="0" width="0.127" layer="21"/>
-<wire x1="37.973" y1="0" x2="0" y2="0" width="0.127" layer="21"/>
+<wire x1="0" y1="10.033" x2="26.924" y2="10.033" width="0.127" layer="21"/>
+<wire x1="26.924" y1="10.033" x2="26.924" y2="0" width="0.127" layer="21"/>
+<wire x1="26.924" y1="0" x2="0" y2="0" width="0.127" layer="21"/>
 <pad name="3.3V" x="1.27" y="8.89" drill="1.016" diameter="1.6764"/>
 <pad name="GND" x="1.27" y="6.35" drill="1.016" diameter="1.6764"/>
 <pad name="CANRX" x="1.27" y="3.81" drill="1.016" diameter="1.6764"/>
 <pad name="CANTX" x="1.27" y="1.27" drill="1.016" diameter="1.6764"/>
-<pad name="CANL" x="35.56" y="7.62" drill="1.397"/>
-<pad name="CANH" x="35.56" y="2.54" drill="1.397"/>
+<pad name="CANL@1" x="23.241" y="7.62" drill="1.397"/>
+<pad name="CANH@1" x="23.241" y="2.54" drill="1.397"/>
+<pad name="CANL@2" x="16.51" y="6.35" drill="1.27" diameter="1.9304"/>
+<pad name="CANH@2" x="16.51" y="3.81" drill="1.27" diameter="1.9304"/>
 </package>
 </packages>
 <symbols>
@@ -348,8 +350,8 @@
 <device name="" package="WAVESHARE_SN65HVD230">
 <connects>
 <connect gate="G$1" pin="3.3V" pad="3.3V"/>
-<connect gate="G$1" pin="CANH" pad="CANH"/>
-<connect gate="G$1" pin="CANL" pad="CANL"/>
+<connect gate="G$1" pin="CANH" pad="CANH@1 CANH@2"/>
+<connect gate="G$1" pin="CANL" pad="CANL@1 CANL@2"/>
 <connect gate="G$1" pin="CANRX" pad="CANRX"/>
 <connect gate="G$1" pin="CANTX" pad="CANTX"/>
 <connect gate="G$1" pin="GND" pad="GND"/>

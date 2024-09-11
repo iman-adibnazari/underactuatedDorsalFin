@@ -122,17 +122,17 @@ DIN A4, landscape with location and doc. field</description>
 <library name="XT30UPB-M">
 <packages>
 <package name="XT30UPB-M">
-<wire x1="-5.354" y1="2.6" x2="-5.354" y2="-2.6" width="0.127" layer="21"/>
-<wire x1="-5.354" y1="-2.6" x2="4.699" y2="-2.6" width="0.127" layer="21"/>
+<wire x1="-5.989" y1="2.6" x2="-5.989" y2="-2.6" width="0.127" layer="21"/>
+<wire x1="-5.989" y1="-2.6" x2="4.699" y2="-2.6" width="0.127" layer="21"/>
 <wire x1="4.699" y1="-2.6" x2="6.116" y2="-1.397" width="0.127" layer="21"/>
 <wire x1="6.116" y1="-1.397" x2="6.116" y2="1.143" width="0.127" layer="21"/>
 <wire x1="6.116" y1="1.143" x2="4.699" y2="2.6" width="0.127" layer="21"/>
-<wire x1="4.699" y1="2.6" x2="-5.354" y2="2.6" width="0.127" layer="21"/>
-<wire x1="-4.699" y1="0.35" x2="-4.699" y2="-0.35" width="0.127" layer="21"/>
-<wire x1="-5.054" y1="0" x2="-4.354" y2="0" width="0.127" layer="21"/>
+<wire x1="4.699" y1="2.6" x2="-5.989" y2="2.6" width="0.127" layer="21"/>
+<wire x1="-5.08" y1="0.35" x2="-5.08" y2="-0.35" width="0.127" layer="21"/>
+<wire x1="-5.435" y1="0" x2="-4.735" y2="0" width="0.127" layer="21"/>
 <wire x1="4.699" y1="0" x2="5.334" y2="0" width="0.127" layer="21"/>
-<pad name="P$1" x="-2.5" y="0" drill="2.159"/>
-<pad name="P$2" x="2.5" y="0" drill="2.159"/>
+<pad name="P$1" x="-2.5" y="0" drill="2.794"/>
+<pad name="P$2" x="2.5" y="0" drill="2.794"/>
 </package>
 </packages>
 <symbols>
@@ -476,25 +476,19 @@ DIN A4, landscape with location and doc. field</description>
 <nets>
 <net name="BATT_MID" class="0">
 <segment>
-<pinref part="BATT1_IN" gate="G$1" pin="-"/>
-<label x="45.72" y="157.48" size="1.778" layer="95"/>
-<pinref part="BATT1_CONN_BO" gate="G$1" pin="2"/>
-<wire x1="40.64" y1="157.48" x2="73.66" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="BATT1_IN" gate="G$1" pin="+"/>
+<pinref part="BATT1_CONN_BO" gate="G$1" pin="1"/>
+<wire x1="40.64" y1="160.02" x2="73.66" y2="160.02" width="0.1524" layer="91"/>
+<label x="55.88" y="160.02" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="BAT2_IN" gate="G$1" pin="+"/>
-<label x="48.26" y="101.6" size="1.778" layer="95"/>
-<pinref part="BATT2_CONN_BO" gate="G$1" pin="1"/>
-<wire x1="43.18" y1="101.6" x2="81.28" y2="101.6" width="0.1524" layer="91"/>
+<pinref part="BAT2_IN" gate="G$1" pin="-"/>
+<pinref part="BATT2_CONN_BO" gate="G$1" pin="2"/>
+<wire x1="43.18" y1="99.06" x2="81.28" y2="99.06" width="0.1524" layer="91"/>
+<label x="60.96" y="99.06" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GND" class="0">
-<segment>
-<pinref part="BATT1_IN" gate="G$1" pin="+"/>
-<label x="48.26" y="160.02" size="1.778" layer="95"/>
-<pinref part="BATT1_CONN_BO" gate="G$1" pin="1"/>
-<wire x1="40.64" y1="160.02" x2="73.66" y2="160.02" width="0.1524" layer="91"/>
-</segment>
 <segment>
 <pinref part="OUT_HEAD" gate="G$1" pin="-"/>
 <wire x1="78.74" y1="43.18" x2="88.9" y2="43.18" width="0.1524" layer="91"/>
@@ -504,6 +498,12 @@ DIN A4, landscape with location and doc. field</description>
 <pinref part="OUT_TAIL" gate="G$1" pin="-"/>
 <wire x1="78.74" y1="25.4" x2="88.9" y2="25.4" width="0.1524" layer="91"/>
 <label x="83.82" y="25.4" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="BATT1_IN" gate="G$1" pin="-"/>
+<pinref part="BATT1_CONN_BO" gate="G$1" pin="2"/>
+<wire x1="40.64" y1="157.48" x2="73.66" y2="157.48" width="0.1524" layer="91"/>
+<label x="53.34" y="157.48" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="VOUT" class="0">
@@ -525,15 +525,15 @@ DIN A4, landscape with location and doc. field</description>
 </net>
 <net name="VOUT_PREFUSE" class="0">
 <segment>
-<pinref part="BAT2_IN" gate="G$1" pin="-"/>
-<wire x1="43.18" y1="99.06" x2="45.72" y2="99.06" width="0.1524" layer="91"/>
-<wire x1="45.72" y1="99.06" x2="45.72" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="101.6" x2="45.72" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="45.72" y1="48.26" x2="48.26" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="FUSE" gate="G$1" pin="+"/>
-<pinref part="BATT2_CONN_BO" gate="G$1" pin="2"/>
-<wire x1="45.72" y1="99.06" x2="81.28" y2="99.06" width="0.1524" layer="91"/>
-<junction x="45.72" y="99.06"/>
 <label x="38.1" y="58.42" size="1.778" layer="95"/>
+<pinref part="BAT2_IN" gate="G$1" pin="+"/>
+<pinref part="BATT2_CONN_BO" gate="G$1" pin="1"/>
+<wire x1="43.18" y1="101.6" x2="45.72" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="101.6" x2="81.28" y2="101.6" width="0.1524" layer="91"/>
+<junction x="45.72" y="101.6"/>
 </segment>
 </net>
 <net name="N$2" class="0">

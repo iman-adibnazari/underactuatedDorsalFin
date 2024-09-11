@@ -91,7 +91,7 @@
 <text x="91.44" y="5.08" size="1.016" layer="25" rot="R180">GND</text>
 <text x="8.89" y="5.08" size="1.016" layer="25" rot="R180">GND</text>
 <text x="45.72" y="6.35" size="1.016" layer="22" rot="MR0" align="bottom-center">Amiiform Power Distribution Board
-V1.00 - 8/23/2024
+V1.01 - 8/23/2024
 Iman Adibnazari
 Bioinspired Robotics and Design Lab
 UC San Diego</text>
@@ -152,17 +152,17 @@ UC San Diego</text>
 <library name="XT30UPB-M">
 <packages>
 <package name="XT30UPB-M">
-<wire x1="-5.354" y1="2.6" x2="-5.354" y2="-2.6" width="0.127" layer="21"/>
-<wire x1="-5.354" y1="-2.6" x2="4.699" y2="-2.6" width="0.127" layer="21"/>
+<wire x1="-5.989" y1="2.6" x2="-5.989" y2="-2.6" width="0.127" layer="21"/>
+<wire x1="-5.989" y1="-2.6" x2="4.699" y2="-2.6" width="0.127" layer="21"/>
 <wire x1="4.699" y1="-2.6" x2="6.116" y2="-1.397" width="0.127" layer="21"/>
 <wire x1="6.116" y1="-1.397" x2="6.116" y2="1.143" width="0.127" layer="21"/>
 <wire x1="6.116" y1="1.143" x2="4.699" y2="2.6" width="0.127" layer="21"/>
-<wire x1="4.699" y1="2.6" x2="-5.354" y2="2.6" width="0.127" layer="21"/>
-<wire x1="-4.699" y1="0.35" x2="-4.699" y2="-0.35" width="0.127" layer="21"/>
-<wire x1="-5.054" y1="0" x2="-4.354" y2="0" width="0.127" layer="21"/>
+<wire x1="4.699" y1="2.6" x2="-5.989" y2="2.6" width="0.127" layer="21"/>
+<wire x1="-5.08" y1="0.35" x2="-5.08" y2="-0.35" width="0.127" layer="21"/>
+<wire x1="-5.435" y1="0" x2="-4.735" y2="0" width="0.127" layer="21"/>
 <wire x1="4.699" y1="0" x2="5.334" y2="0" width="0.127" layer="21"/>
-<pad name="P$1" x="-2.5" y="0" drill="2.159"/>
-<pad name="P$2" x="2.5" y="0" drill="2.159"/>
+<pad name="P$1" x="-2.5" y="0" drill="2.794"/>
+<pad name="P$2" x="2.5" y="0" drill="2.794"/>
 </package>
 </packages>
 </library>
@@ -365,25 +365,25 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </pass>
 </autorouter>
 <elements>
-<element name="BATT1_CONN_BO" library="B2B-XH-A_LF__SN_" package="JST_B2B-XH-A(LF)(SN)" value="B2B-XH-A(LF)(SN)" x="38.1" y="5.08" smashed="yes" rot="R180">
-<attribute name="AVAILABILITY" value="In Stock" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" Connector Header Through Hole 2 position 0.098 (2.50mm) " x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="JST Sales America Inc." x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MP" value="B2B-XH-A(LF)(SN)" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="PACKAGE" value="None" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="PRICE" value="None" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="BATT1_CONN_BO" library="B2B-XH-A_LF__SN_" package="JST_B2B-XH-A(LF)(SN)" value="B2B-XH-A(LF)(SN)" x="38.1" y="5.08" smashed="yes">
+<attribute name="AVAILABILITY" value="In Stock" x="63.5" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda" x="63.5" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" Connector Header Through Hole 2 position 0.098 (2.50mm) " x="63.5" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="JST Sales America Inc." x="63.5" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="B2B-XH-A(LF)(SN)" x="63.5" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="PACKAGE" value="None" x="63.5" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="PRICE" value="None" x="63.5" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="63.5" y="-1.27" size="1.778" layer="27" display="off"/>
 </element>
-<element name="BATT2_CONN_BO" library="B2B-XH-A_LF__SN_" package="JST_B2B-XH-A(LF)(SN)" value="B2B-XH-A(LF)(SN)" x="53.34" y="5.08" smashed="yes" rot="R180">
-<attribute name="AVAILABILITY" value="In Stock" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" Connector Header Through Hole 2 position 0.098 (2.50mm) " x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="JST Sales America Inc." x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MP" value="B2B-XH-A(LF)(SN)" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="PACKAGE" value="None" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="PRICE" value="None" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="BATT2_CONN_BO" library="B2B-XH-A_LF__SN_" package="JST_B2B-XH-A(LF)(SN)" value="B2B-XH-A(LF)(SN)" x="53.34" y="5.08" smashed="yes">
+<attribute name="AVAILABILITY" value="In Stock" x="95.25" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda" x="95.25" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" Connector Header Through Hole 2 position 0.098 (2.50mm) " x="95.25" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="JST Sales America Inc." x="95.25" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="B2B-XH-A(LF)(SN)" x="95.25" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="PACKAGE" value="None" x="95.25" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="PRICE" value="None" x="95.25" y="-1.27" size="1.778" layer="27" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="95.25" y="-1.27" size="1.778" layer="27" display="off"/>
 </element>
 <element name="BATT1_BAL_IN" library="B6B-XH-A_LF__SN_" package="JST_B6B-XH-A(LF)(SN)" value="B6B-XH-A(LF)(SN)" x="72.39" y="16.51" smashed="yes">
 <attribute name="AVAILABILITY" value="In Stock" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
@@ -425,25 +425,25 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="PRICE" value="None" x="63.5" y="-25.4" size="1.778" layer="27" display="off"/>
 <attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B6B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="63.5" y="-25.4" size="1.778" layer="27" display="off"/>
 </element>
-<element name="BATT1_IN" library="XT30UPB-M" package="XT30UPB-M" value="XT30UPB-M" x="38.1" y="16.51" smashed="yes">
-<attribute name="AVAILABILITY" value="Not in stock" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=eda" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" Socket; DC supply; XT30; male; PIN: 2; on PCBs; THT; yellow; 15A; 500V " x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="amass" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="XT30UPB-M" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="PACKAGE" value="None" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="PRICE" value="None" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=snap" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
+<element name="BATT1_IN" library="XT30UPB-M" package="XT30UPB-M" value="XT30UPB-M" x="38.1" y="16.51" smashed="yes" rot="R180">
+<attribute name="AVAILABILITY" value="Not in stock" x="19.05" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=eda" x="19.05" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" Socket; DC supply; XT30; male; PIN: 2; on PCBs; THT; yellow; 15A; 500V " x="19.05" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="amass" x="19.05" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="XT30UPB-M" x="19.05" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PACKAGE" value="None" x="19.05" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PRICE" value="None" x="19.05" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=snap" x="19.05" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="BAT2_IN" library="XT30UPB-M" package="XT30UPB-M" value="XT30UPB-M" x="53.34" y="16.51" smashed="yes">
-<attribute name="AVAILABILITY" value="Not in stock" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=eda" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" Socket; DC supply; XT30; male; PIN: 2; on PCBs; THT; yellow; 15A; 500V " x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="amass" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="XT30UPB-M" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="PACKAGE" value="None" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="PRICE" value="None" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
-<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=snap" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
+<element name="BAT2_IN" library="XT30UPB-M" package="XT30UPB-M" value="XT30UPB-M" x="53.34" y="16.51" smashed="yes" rot="R180">
+<attribute name="AVAILABILITY" value="Not in stock" x="21.59" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=eda" x="21.59" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" Socket; DC supply; XT30; male; PIN: 2; on PCBs; THT; yellow; 15A; 500V " x="21.59" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="amass" x="21.59" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="XT30UPB-M" x="21.59" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PACKAGE" value="None" x="21.59" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PRICE" value="None" x="21.59" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=snap" x="21.59" y="55.88" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="OUT_HEAD" library="XT30UPB-M" package="XT30UPB-M" value="XT30UPB-M" x="91.44" y="12.7" smashed="yes" rot="R270">
 <attribute name="AVAILABILITY" value="Not in stock" x="52.07" y="-31.75" size="1.778" layer="27" rot="R270" display="off"/>
@@ -469,22 +469,20 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </elements>
 <signals>
 <signal name="BATT_MID">
-<contactref element="BATT1_IN" pad="P$2"/>
-<contactref element="BATT1_CONN_BO" pad="2"/>
-<contactref element="BAT2_IN" pad="P$1"/>
-<contactref element="BATT2_CONN_BO" pad="1"/>
 <polygon width="0.254" layer="1">
-<vertex x="38.1" y="5.08"/>
+<vertex x="38.1" y="3.175"/>
 <vertex x="38.1" y="20.32"/>
 <vertex x="53.34" y="20.32"/>
-<vertex x="53.34" y="3.81"/>
-<vertex x="38.1" y="3.81"/>
+<vertex x="53.34" y="3.175"/>
 </polygon>
-<wire x1="40.6" y1="16.51" x2="50.84" y2="16.51" width="3.81" layer="1"/>
-</signal>
-<signal name="GND">
 <contactref element="BATT1_IN" pad="P$1"/>
 <contactref element="BATT1_CONN_BO" pad="1"/>
+<contactref element="BAT2_IN" pad="P$2"/>
+<contactref element="BATT2_CONN_BO" pad="2"/>
+<wire x1="50.84" y1="16.51" x2="50.8" y2="16.51" width="4.318" layer="1"/>
+<wire x1="40.6" y1="16.51" x2="40.64" y2="16.51" width="4.318" layer="1"/>
+</signal>
+<signal name="GND">
 <contactref element="OUT_HEAD" pad="P$2"/>
 <contactref element="OUT_TAIL" pad="P$2"/>
 <polygon width="0.254" layer="16">
@@ -493,11 +491,14 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <vertex x="97.79" y="25.4"/>
 <vertex x="97.79" y="0"/>
 </polygon>
-<wire x1="5.81" y1="10.2" x2="5.85" y2="10.16" width="3.81" layer="16"/>
-<wire x1="5.85" y1="10.16" x2="7.08" y2="10.16" width="3.81" layer="16"/>
+<wire x1="5.81" y1="10.2" x2="5.85" y2="10.16" width="4.318" layer="16"/>
+<wire x1="5.85" y1="10.16" x2="7.08" y2="10.16" width="4.318" layer="16"/>
 <wire x1="91.44" y1="10.2" x2="91.48" y2="10.16" width="3.81" layer="16"/>
-<wire x1="91.48" y1="10.16" x2="93.98" y2="10.16" width="3.81" layer="16"/>
-<wire x1="35.6" y1="16.51" x2="31.75" y2="16.51" width="3.81" layer="16"/>
+<wire x1="91.48" y1="10.16" x2="93.98" y2="10.16" width="4.318" layer="16"/>
+<contactref element="BATT1_IN" pad="P$2"/>
+<contactref element="BATT1_CONN_BO" pad="2"/>
+<wire x1="35.6" y1="16.51" x2="35.56" y2="16.55" width="4.318" layer="16"/>
+<wire x1="35.56" y1="16.55" x2="35.56" y2="17.78" width="4.318" layer="16"/>
 </signal>
 <signal name="VOUT">
 <contactref element="FUSE" pad="-"/>
@@ -510,23 +511,23 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <vertex x="97.79" y="25.4"/>
 </polygon>
 <wire x1="86.5251" y1="12.97976875" x2="86.5251" y2="11.5951" width="3.81" layer="1"/>
-<wire x1="91.44" y1="15.2" x2="88.74533125" y2="15.2" width="3.81" layer="1"/>
+<wire x1="91.44" y1="15.2" x2="88.74533125" y2="15.2" width="4.318" layer="1"/>
 <wire x1="88.74533125" y1="15.2" x2="86.5251" y2="12.97976875" width="3.81" layer="1"/>
 <wire x1="85.09" y1="7.97" x2="86.36" y2="6.7" width="3.81" layer="1"/>
 <wire x1="86.36" y1="6.7" x2="86.36" y2="6.35" width="3.81" layer="1"/>
 <wire x1="86.36" y1="6.35" x2="84.455" y2="8.255" width="3.81" layer="1"/>
 <wire x1="84.455" y1="8.255" x2="86.36" y2="10.16" width="3.81" layer="1"/>
-<wire x1="5.81" y1="15.2" x2="5.85" y2="15.24" width="3.81" layer="1"/>
-<wire x1="5.85" y1="15.24" x2="8.35" y2="15.24" width="3.81" layer="1"/>
+<wire x1="5.81" y1="15.2" x2="5.85" y2="15.24" width="4.318" layer="1"/>
+<wire x1="5.85" y1="15.24" x2="8.35" y2="15.24" width="4.318" layer="1"/>
 </signal>
 <signal name="VOUT_PREFUSE">
-<contactref element="BAT2_IN" pad="P$2"/>
 <contactref element="FUSE" pad="+"/>
-<contactref element="BATT2_CONN_BO" pad="2"/>
-<wire x1="55.84" y1="16.51" x2="55.84" y2="6.855" width="2.54" layer="1"/>
-<wire x1="55.84" y1="6.855" x2="54.59" y2="5.605" width="2.54" layer="1"/>
-<wire x1="55.84" y1="16.51" x2="59.3" y2="19.97" width="3.81" layer="1"/>
-<wire x1="59.3" y1="19.97" x2="85.09" y2="19.97" width="3.81" layer="1"/>
+<wire x1="59.3" y1="19.97" x2="85.09" y2="19.97" width="4.318" layer="1"/>
+<contactref element="BAT2_IN" pad="P$1"/>
+<contactref element="BATT2_CONN_BO" pad="1"/>
+<wire x1="55.84" y1="16.51" x2="59.3" y2="19.97" width="4.318" layer="1"/>
+<wire x1="55.84" y1="16.51" x2="55.84" y2="5.805" width="1.524" layer="1"/>
+<wire x1="55.84" y1="5.805" x2="54.59" y2="4.555" width="1.524" layer="1"/>
 </signal>
 <signal name="N$2">
 <contactref element="BATT1_BAL_IN" pad="6"/>
