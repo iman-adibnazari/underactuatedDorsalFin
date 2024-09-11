@@ -1,9 +1,11 @@
-
 #include <Arduino.h>
 #include "ODriveCAN.h"
 
+// Documentation for this example can be found here:
+// https://docs.odriverobotics.com/v/latest/guides/arduino-can-guide.html
 
 
+/* Configuration of example sketch -------------------------------------------*/
 
 // CAN bus baudrate. Make sure this matches for every device on the bus
 #define CAN_BAUDRATE 250000
@@ -14,18 +16,38 @@
 // Uncomment below the line that corresponds to your hardware.
 // See also "Board-specific settings" to adapt the details for your hardware setup.
 
+// #define IS_TEENSY_BUILTIN // Teensy boards with built-in CAN interface (e.g. Teensy 4.1). See below to select which interface to use.
 #define IS_ARDUINO_BUILTIN // Arduino boards with built-in CAN interface (e.g. Arduino Uno R4 Minima)
+// #define IS_MCP2515 // Any board with external MCP2515 based extension module. See below to configure the module.
+
 
 /* Board-specific includes ---------------------------------------------------*/
+
+
+// See https://github.com/arduino/ArduinoCore-API/blob/master/api/HardwareCAN.h
+// and https://github.com/arduino/ArduinoCore-renesas/tree/main/libraries/Arduino_CAN
 
 #include <Arduino_CAN.h>
 #include <ODriveHardwareCAN.hpp>
 
+
+
+
+
 /* Board-specific settings ---------------------------------------------------*/
+
+
+
+/* Arduinos with built-in CAN */
+
+
 HardwareCAN& can_intf = CAN;
+
 bool setupCan() {
   return can_intf.begin((CanBitRate)CAN_BAUDRATE);
 }
+
+
 
 /* Example sketch ------------------------------------------------------------*/
 
@@ -134,15 +156,15 @@ void setup() {
 void loop() {
   pumpEvents(can_intf); // This is required on some platforms to handle incoming feedback CAN messages
 
-  float SINE_PERIOD = 2.0f; // Period of the position command sine wave in seconds
+  float SINE_PERIOD = 0.125f; // Period of the position command sine wave in seconds
 
   float t = 0.001 * millis();
   
   float phase = t * (TWO_PI / SINE_PERIOD);
 
   odrv0.setPosition(
-    0.125*sin(phase)//, // position
-   0.125*cos(phase) * (TWO_PI / SINE_PERIOD) // velocity feedforward (optional)
+    sin(phase), // position
+    cos(phase) * (TWO_PI / SINE_PERIOD) // velocity feedforward (optional)
   );
 
   // print position and velocity for Serial Plotter

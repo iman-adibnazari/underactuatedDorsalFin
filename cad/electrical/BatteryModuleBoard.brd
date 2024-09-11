@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE eagle SYSTEM "eagle.dtd">
+<eagle version="9.6.2">
+<drawing>
+<settings>
+<setting alwaysvectorfont="no"/>
+<setting verticaltext="up"/>
+</settings>
+<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
+<layers>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
+<layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
+<layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
+<layer number="5" name="Route5" color="19" fill="1" visible="no" active="no"/>
+<layer number="6" name="Route6" color="25" fill="1" visible="no" active="no"/>
+<layer number="7" name="Route7" color="26" fill="1" visible="no" active="no"/>
+<layer number="8" name="Route8" color="27" fill="1" visible="no" active="no"/>
+<layer number="9" name="Route9" color="28" fill="1" visible="no" active="no"/>
+<layer number="10" name="Route10" color="29" fill="1" visible="no" active="no"/>
+<layer number="11" name="Route11" color="30" fill="1" visible="no" active="no"/>
+<layer number="12" name="Route12" color="20" fill="1" visible="no" active="no"/>
+<layer number="13" name="Route13" color="21" fill="1" visible="no" active="no"/>
+<layer number="14" name="Route14" color="22" fill="1" visible="no" active="no"/>
+<layer number="15" name="Route15" color="23" fill="1" visible="no" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
+<layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
+<layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
+<layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
+<layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
+<layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
+<layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
+<layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
+<layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="88" name="SimResults" color="9" fill="1" visible="no" active="no"/>
+<layer number="89" name="SimProbes" color="9" fill="1" visible="no" active="no"/>
+<layer number="90" name="Modules" color="5" fill="1" visible="no" active="no"/>
+<layer number="91" name="Nets" color="2" fill="1" visible="no" active="no"/>
+<layer number="92" name="Busses" color="1" fill="1" visible="no" active="no"/>
+<layer number="93" name="Pins" color="2" fill="1" visible="no" active="no"/>
+<layer number="94" name="Symbols" color="4" fill="1" visible="no" active="no"/>
+<layer number="95" name="Names" color="7" fill="1" visible="no" active="no"/>
+<layer number="96" name="Values" color="7" fill="1" visible="no" active="no"/>
+<layer number="97" name="Info" color="7" fill="1" visible="no" active="no"/>
+<layer number="98" name="Guide" color="6" fill="1" visible="no" active="no"/>
+</layers>
+<board>
+<plain>
+<wire x1="0" y1="0" x2="96.9" y2="0" width="0" layer="20"/>
+<wire x1="96.9" y1="0" x2="96.9" y2="24.92" width="0" layer="20"/>
+<wire x1="96.9" y1="24.92" x2="0" y2="24.92" width="0" layer="20"/>
+<wire x1="0" y1="24.92" x2="0" y2="0" width="0" layer="20"/>
+<text x="22.86" y="21.59" size="1.778" layer="21">Battery 1 In </text>
+<text x="55.88" y="21.59" size="1.778" layer="21">Battery 2 In </text>
+<text x="20.32" y="10.16" size="1.778" layer="21">Battery 1 Breakout</text>
+<text x="53.34" y="10.16" size="1.778" layer="21">Battery 2 Breakout</text>
+<hole x="94" y="3" drill="3.15"/>
+<hole x="94" y="22" drill="3.15"/>
+<hole x="3" y="3" drill="3.15"/>
+<hole x="3" y="22" drill="3.15"/>
+<text x="86" y="11.5" size="1.778" layer="25" rot="R90">Fuse</text>
+<text x="8.89" y="20.32" size="1.016" layer="25" rot="R180">VOUT</text>
+<text x="92.329" y="20.32" size="1.016" layer="25" rot="R180">VOUT</text>
+<text x="91.44" y="5.08" size="1.016" layer="25" rot="R180">GND</text>
+<text x="8.89" y="5.08" size="1.016" layer="25" rot="R180">GND</text>
+<text x="45.72" y="6.35" size="1.016" layer="22" rot="MR0" align="bottom-center">Amiiform Power Distribution Board
+V1.00 - 8/23/2024
+Iman Adibnazari
+Bioinspired Robotics and Design Lab
+UC San Diego</text>
+</plain>
+<libraries>
+<library name="B2B-XH-A_LF__SN_">
+<packages>
+<package name="JST_B2B-XH-A(LF)(SN)">
+<wire x1="3.7" y1="2.875" x2="3.7" y2="-2.875" width="0.127" layer="51"/>
+<wire x1="3.7" y1="-2.875" x2="-3.7" y2="-2.875" width="0.127" layer="51"/>
+<wire x1="-3.7" y1="-2.875" x2="-3.7" y2="2.875" width="0.127" layer="51"/>
+<wire x1="-3.7" y1="2.875" x2="3.7" y2="2.875" width="0.127" layer="51"/>
+<circle x="4.44" y="-0.525" radius="0.1" width="0.2" layer="51"/>
+<wire x1="3.7" y1="2.875" x2="3.7" y2="-2.875" width="0.127" layer="21"/>
+<wire x1="3.7" y1="-2.875" x2="-3.7" y2="-2.875" width="0.127" layer="21"/>
+<wire x1="-3.7" y1="-2.875" x2="-3.7" y2="2.875" width="0.127" layer="21"/>
+<wire x1="-3.7" y1="2.875" x2="3.7" y2="2.875" width="0.127" layer="21"/>
+<wire x1="-3.95" y1="3.125" x2="-3.95" y2="-3.125" width="0.05" layer="39"/>
+<wire x1="-3.95" y1="-3.125" x2="3.95" y2="-3.125" width="0.05" layer="39"/>
+<wire x1="3.95" y1="-3.125" x2="3.95" y2="3.125" width="0.05" layer="39"/>
+<wire x1="3.95" y1="3.125" x2="-3.95" y2="3.125" width="0.05" layer="39"/>
+<circle x="4.44" y="-0.525" radius="0.1" width="0.2" layer="21"/>
+<text x="-3.95" y="4.125" size="1.27" layer="25">&gt;NAME</text>
+<text x="-3.95" y="-4.125" size="1.27" layer="27" align="top-left">&gt;VALUE</text>
+<pad name="2" x="-1.25" y="-0.525" drill="1.05"/>
+<pad name="1" x="1.25" y="-0.525" drill="1.05" shape="square"/>
+</package>
+</packages>
+</library>
+<library name="B6B-XH-A_LF__SN_">
+<packages>
+<package name="JST_B6B-XH-A(LF)(SN)">
+<wire x1="-8.7" y1="2.875" x2="8.7" y2="2.875" width="0.127" layer="21"/>
+<wire x1="8.7" y1="2.875" x2="8.7" y2="-2.875" width="0.127" layer="21"/>
+<wire x1="8.7" y1="-2.875" x2="-8.7" y2="-2.875" width="0.127" layer="21"/>
+<wire x1="-8.7" y1="-2.875" x2="-8.7" y2="2.875" width="0.127" layer="21"/>
+<wire x1="-8.7" y1="2.875" x2="8.7" y2="2.875" width="0.127" layer="51"/>
+<wire x1="8.7" y1="2.875" x2="8.7" y2="-2.875" width="0.127" layer="51"/>
+<wire x1="8.7" y1="-2.875" x2="-8.7" y2="-2.875" width="0.127" layer="51"/>
+<wire x1="-8.7" y1="-2.875" x2="-8.7" y2="2.875" width="0.127" layer="51"/>
+<wire x1="-8.95" y1="3.125" x2="8.95" y2="3.125" width="0.05" layer="39"/>
+<wire x1="8.95" y1="3.125" x2="8.95" y2="-3.125" width="0.05" layer="39"/>
+<wire x1="8.95" y1="-3.125" x2="-8.95" y2="-3.125" width="0.05" layer="39"/>
+<wire x1="-8.95" y1="-3.125" x2="-8.95" y2="3.125" width="0.05" layer="39"/>
+<text x="-8.95" y="4" size="1.2" layer="25" ratio="18">&gt;NAME</text>
+<text x="-8.95" y="-5" size="1.2" layer="27" ratio="18">&gt;VALUE</text>
+<circle x="9.5" y="-0.525" radius="0.1" width="0.2" layer="21"/>
+<circle x="9.5" y="-0.525" radius="0.1" width="0.2" layer="51"/>
+<pad name="3" x="1.25" y="-0.525" drill="1"/>
+<pad name="4" x="-1.25" y="-0.525" drill="1"/>
+<pad name="2" x="3.75" y="-0.525" drill="1"/>
+<pad name="1" x="6.25" y="-0.525" drill="1" shape="square"/>
+<pad name="5" x="-3.75" y="-0.525" drill="1"/>
+<pad name="6" x="-6.25" y="-0.525" drill="1"/>
+</package>
+</packages>
+</library>
+<library name="XT30UPB-M">
+<packages>
+<package name="XT30UPB-M">
+<wire x1="-5.354" y1="2.6" x2="-5.354" y2="-2.6" width="0.127" layer="21"/>
+<wire x1="-5.354" y1="-2.6" x2="4.699" y2="-2.6" width="0.127" layer="21"/>
+<wire x1="4.699" y1="-2.6" x2="6.116" y2="-1.397" width="0.127" layer="21"/>
+<wire x1="6.116" y1="-1.397" x2="6.116" y2="1.143" width="0.127" layer="21"/>
+<wire x1="6.116" y1="1.143" x2="4.699" y2="2.6" width="0.127" layer="21"/>
+<wire x1="4.699" y1="2.6" x2="-5.354" y2="2.6" width="0.127" layer="21"/>
+<wire x1="-4.699" y1="0.35" x2="-4.699" y2="-0.35" width="0.127" layer="21"/>
+<wire x1="-5.054" y1="0" x2="-4.354" y2="0" width="0.127" layer="21"/>
+<wire x1="4.699" y1="0" x2="5.334" y2="0" width="0.127" layer="21"/>
+<pad name="P$1" x="-2.5" y="0" drill="2.159"/>
+<pad name="P$2" x="2.5" y="0" drill="2.159"/>
+</package>
+</packages>
+</library>
+<library name="UnderactuatedDorsalFin">
+<packages>
+<package name="SETSAFE_C1_FUSE">
+<pad name="+" x="-6" y="0" drill="1" diameter="3.81"/>
+<pad name="-" x="6" y="0" drill="1" diameter="3.81"/>
+<wire x1="-3.75" y1="1.25" x2="-3.75" y2="-1.25" width="0.127" layer="21"/>
+<wire x1="-3.75" y1="-1.25" x2="3.75" y2="-1.25" width="0.127" layer="21"/>
+<wire x1="3.75" y1="-1.25" x2="3.75" y2="1.25" width="0.127" layer="21"/>
+<wire x1="3.75" y1="1.25" x2="-3.75" y2="1.25" width="0.127" layer="21"/>
+</package>
+</packages>
+</library>
+</libraries>
+<attributes>
+</attributes>
+<variantdefs>
+</variantdefs>
+<classes>
+<class number="0" name="default" width="0" drill="0">
+</class>
+</classes>
+<designrules name="oshpark-2layer">
+<description language="en">&lt;b&gt;OSH Park Design Rules&lt;/b&gt;
+&lt;p&gt;
+Please make sure your boards conform to these design rules.
+&lt;/p&gt;
+&lt;p&gt;
+Note, that not all DRC settings must be set by the manufacturer. Several can be adjusted for the design, including those listed on our docs page here. 
+&lt;a href=&quot;http://docs.oshpark.com/design-tools/eagle/design-rules-files/&quot;&gt;Adjustable Settings&lt;/a&gt;
+&lt;/p&gt;</description>
+<param name="layerSetup" value="(1*16)"/>
+<param name="mtCopper" value="0.035559375mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.035559375mm"/>
+<param name="mtIsolate" value="1.6mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm"/>
+<param name="mdWireWire" value="6mil"/>
+<param name="mdWirePad" value="6mil"/>
+<param name="mdWireVia" value="6mil"/>
+<param name="mdPadPad" value="6mil"/>
+<param name="mdPadVia" value="6mil"/>
+<param name="mdViaVia" value="6mil"/>
+<param name="mdSmdPad" value="6mil"/>
+<param name="mdSmdVia" value="6mil"/>
+<param name="mdSmdSmd" value="6mil"/>
+<param name="mdViaViaSameLayer" value="8mil"/>
+<param name="mnLayersViaInSmd" value="2"/>
+<param name="mdCopperDimension" value="15mil"/>
+<param name="mdDrill" value="6mil"/>
+<param name="mdSmdStop" value="0mil"/>
+<param name="msWidth" value="6mil"/>
+<param name="msDrill" value="10mil"/>
+<param name="msMicroVia" value="10mil"/>
+<param name="msBlindViaRatio" value="0.5"/>
+<param name="rvPadTop" value="0.25"/>
+<param name="rvPadInner" value="0.25"/>
+<param name="rvPadBottom" value="0.25"/>
+<param name="rvViaOuter" value="0.25"/>
+<param name="rvViaInner" value="0.25"/>
+<param name="rvMicroViaOuter" value="0.25"/>
+<param name="rvMicroViaInner" value="0.25"/>
+<param name="rlMinPadTop" value="5mil"/>
+<param name="rlMaxPadTop" value="20mil"/>
+<param name="rlMinPadInner" value="5mil"/>
+<param name="rlMaxPadInner" value="20mil"/>
+<param name="rlMinPadBottom" value="5mil"/>
+<param name="rlMaxPadBottom" value="20mil"/>
+<param name="rlMinViaOuter" value="5mil"/>
+<param name="rlMaxViaOuter" value="20mil"/>
+<param name="rlMinViaInner" value="5mil"/>
+<param name="rlMaxViaInner" value="20mil"/>
+<param name="rlMinMicroViaOuter" value="5mil"/>
+<param name="rlMaxMicroViaOuter" value="20mil"/>
+<param name="rlMinMicroViaInner" value="5mil"/>
+<param name="rlMaxMicroViaInner" value="20mil"/>
+<param name="psTop" value="-1"/>
+<param name="psBottom" value="-1"/>
+<param name="psFirst" value="-1"/>
+<param name="psElongationLong" value="100"/>
+<param name="psElongationOffset" value="100"/>
+<param name="mvStopFrame" value="1"/>
+<param name="mvCreamFrame" value="0"/>
+<param name="mlMinStopFrame" value="2.5mil"/>
+<param name="mlMaxStopFrame" value="2.5mil"/>
+<param name="mlMinCreamFrame" value="0mil"/>
+<param name="mlMaxCreamFrame" value="0mil"/>
+<param name="mlViaStopLimit" value="0mil"/>
+<param name="srRoundness" value="0"/>
+<param name="srMinRoundness" value="0mil"/>
+<param name="srMaxRoundness" value="0mil"/>
+<param name="slThermalIsolate" value="10mil"/>
+<param name="slThermalsForVias" value="0"/>
+<param name="dpMaxLengthDifference" value="10mm"/>
+<param name="dpGapFactor" value="2.5"/>
+<param name="checkAngle" value="0"/>
+<param name="checkFont" value="1"/>
+<param name="checkRestrict" value="1"/>
+<param name="checkStop" value="0"/>
+<param name="checkValues" value="0"/>
+<param name="checkNames" value="1"/>
+<param name="checkWireStubs" value="1"/>
+<param name="checkPolygonWidth" value="0"/>
+<param name="useDiameter" value="13"/>
+<param name="maxErrors" value="50"/>
+</designrules>
+<autorouter>
+<pass name="Default">
+<param name="RoutingGrid" value="50mil"/>
+<param name="AutoGrid" value="1"/>
+<param name="Efforts" value="0"/>
+<param name="TopRouterVariant" value="1"/>
+<param name="tpViaShape" value="round"/>
+<param name="PrefDir.1" value="a"/>
+<param name="PrefDir.2" value="0"/>
+<param name="PrefDir.3" value="0"/>
+<param name="PrefDir.4" value="0"/>
+<param name="PrefDir.5" value="0"/>
+<param name="PrefDir.6" value="0"/>
+<param name="PrefDir.7" value="0"/>
+<param name="PrefDir.8" value="0"/>
+<param name="PrefDir.9" value="0"/>
+<param name="PrefDir.10" value="0"/>
+<param name="PrefDir.11" value="0"/>
+<param name="PrefDir.12" value="0"/>
+<param name="PrefDir.13" value="0"/>
+<param name="PrefDir.14" value="0"/>
+<param name="PrefDir.15" value="0"/>
+<param name="PrefDir.16" value="a"/>
+<param name="cfVia" value="8"/>
+<param name="cfNonPref" value="5"/>
+<param name="cfChangeDir" value="2"/>
+<param name="cfOrthStep" value="2"/>
+<param name="cfDiagStep" value="3"/>
+<param name="cfExtdStep" value="0"/>
+<param name="cfBonusStep" value="1"/>
+<param name="cfMalusStep" value="1"/>
+<param name="cfPadImpact" value="4"/>
+<param name="cfSmdImpact" value="4"/>
+<param name="cfBusImpact" value="0"/>
+<param name="cfHugging" value="3"/>
+<param name="cfAvoid" value="4"/>
+<param name="cfPolygon" value="10"/>
+<param name="cfBase.1" value="0"/>
+<param name="cfBase.2" value="1"/>
+<param name="cfBase.3" value="1"/>
+<param name="cfBase.4" value="1"/>
+<param name="cfBase.5" value="1"/>
+<param name="cfBase.6" value="1"/>
+<param name="cfBase.7" value="1"/>
+<param name="cfBase.8" value="1"/>
+<param name="cfBase.9" value="1"/>
+<param name="cfBase.10" value="1"/>
+<param name="cfBase.11" value="1"/>
+<param name="cfBase.12" value="1"/>
+<param name="cfBase.13" value="1"/>
+<param name="cfBase.14" value="1"/>
+<param name="cfBase.15" value="1"/>
+<param name="cfBase.16" value="0"/>
+<param name="mnVias" value="20"/>
+<param name="mnSegments" value="9999"/>
+<param name="mnExtdSteps" value="9999"/>
+<param name="mnRipupLevel" value="10"/>
+<param name="mnRipupSteps" value="100"/>
+<param name="mnRipupTotal" value="100"/>
+</pass>
+<pass name="Follow-me" refer="Default" active="yes">
+</pass>
+<pass name="Busses" refer="Default" active="yes">
+<param name="cfNonPref" value="4"/>
+<param name="cfBusImpact" value="4"/>
+<param name="cfHugging" value="0"/>
+<param name="mnVias" value="0"/>
+</pass>
+<pass name="Route" refer="Default" active="yes">
+</pass>
+<pass name="Optimize1" refer="Default" active="yes">
+<param name="cfVia" value="99"/>
+<param name="cfExtdStep" value="10"/>
+<param name="cfHugging" value="1"/>
+<param name="mnExtdSteps" value="1"/>
+<param name="mnRipupLevel" value="0"/>
+</pass>
+<pass name="Optimize2" refer="Optimize1" active="yes">
+<param name="cfNonPref" value="0"/>
+<param name="cfChangeDir" value="6"/>
+<param name="cfExtdStep" value="0"/>
+<param name="cfBonusStep" value="2"/>
+<param name="cfMalusStep" value="2"/>
+<param name="cfPadImpact" value="2"/>
+<param name="cfSmdImpact" value="2"/>
+<param name="cfHugging" value="0"/>
+</pass>
+<pass name="Optimize3" refer="Optimize2" active="yes">
+<param name="cfChangeDir" value="8"/>
+<param name="cfPadImpact" value="0"/>
+<param name="cfSmdImpact" value="0"/>
+</pass>
+<pass name="Optimize4" refer="Optimize3" active="yes">
+<param name="cfChangeDir" value="25"/>
+</pass>
+</autorouter>
+<elements>
+<element name="BATT1_CONN_BO" library="B2B-XH-A_LF__SN_" package="JST_B2B-XH-A(LF)(SN)" value="B2B-XH-A(LF)(SN)" x="38.1" y="5.08" smashed="yes" rot="R180">
+<attribute name="AVAILABILITY" value="In Stock" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" Connector Header Through Hole 2 position 0.098 (2.50mm) " x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="JST Sales America Inc." x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="B2B-XH-A(LF)(SN)" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PACKAGE" value="None" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PRICE" value="None" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="12.7" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+</element>
+<element name="BATT2_CONN_BO" library="B2B-XH-A_LF__SN_" package="JST_B2B-XH-A(LF)(SN)" value="B2B-XH-A(LF)(SN)" x="53.34" y="5.08" smashed="yes" rot="R180">
+<attribute name="AVAILABILITY" value="In Stock" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" Connector Header Through Hole 2 position 0.098 (2.50mm) " x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="JST Sales America Inc." x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="B2B-XH-A(LF)(SN)" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PACKAGE" value="None" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PRICE" value="None" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="11.43" y="11.43" size="1.778" layer="27" rot="R180" display="off"/>
+</element>
+<element name="BATT1_BAL_IN" library="B6B-XH-A_LF__SN_" package="JST_B6B-XH-A(LF)(SN)" value="B6B-XH-A(LF)(SN)" x="72.39" y="16.51" smashed="yes">
+<attribute name="AVAILABILITY" value="In Stock" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/B6B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" Connector Header Through Hole 6 position 0.098 (2.50mm) " x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="JST Sales" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="B6B-XH-A(LF)(SN)" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="PACKAGE" value="None" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="PRICE" value="None" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B6B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
+</element>
+<element name="BATT2_BAL_IN" library="B6B-XH-A_LF__SN_" package="JST_B6B-XH-A(LF)(SN)" value="B6B-XH-A(LF)(SN)" x="20.32" y="16.51" smashed="yes">
+<attribute name="AVAILABILITY" value="In Stock" x="63.5" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/B6B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda" x="63.5" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" Connector Header Through Hole 6 position 0.098 (2.50mm) " x="63.5" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="JST Sales" x="63.5" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="B6B-XH-A(LF)(SN)" x="63.5" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="PACKAGE" value="None" x="63.5" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="PRICE" value="None" x="63.5" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B6B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="63.5" y="-2.54" size="1.778" layer="27" display="off"/>
+</element>
+<element name="BAT1_BALCONN_BO" library="B6B-XH-A_LF__SN_" package="JST_B6B-XH-A(LF)(SN)" value="B6B-XH-A(LF)(SN)" x="72.39" y="5.08" smashed="yes">
+<attribute name="AVAILABILITY" value="In Stock" x="95.25" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/B6B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda" x="95.25" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" Connector Header Through Hole 6 position 0.098 (2.50mm) " x="95.25" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="JST Sales" x="95.25" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="B6B-XH-A(LF)(SN)" x="95.25" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="PACKAGE" value="None" x="95.25" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="PRICE" value="None" x="95.25" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B6B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="95.25" y="-25.4" size="1.778" layer="27" display="off"/>
+</element>
+<element name="BAT2_BALCONN_BO" library="B6B-XH-A_LF__SN_" package="JST_B6B-XH-A(LF)(SN)" value="B6B-XH-A(LF)(SN)" x="20.32" y="5.08" smashed="yes">
+<attribute name="AVAILABILITY" value="In Stock" x="63.5" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/B6B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda" x="63.5" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" Connector Header Through Hole 6 position 0.098 (2.50mm) " x="63.5" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="JST Sales" x="63.5" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="B6B-XH-A(LF)(SN)" x="63.5" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="PACKAGE" value="None" x="63.5" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="PRICE" value="None" x="63.5" y="-25.4" size="1.778" layer="27" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/B6B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap" x="63.5" y="-25.4" size="1.778" layer="27" display="off"/>
+</element>
+<element name="BATT1_IN" library="XT30UPB-M" package="XT30UPB-M" value="XT30UPB-M" x="38.1" y="16.51" smashed="yes">
+<attribute name="AVAILABILITY" value="Not in stock" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=eda" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" Socket; DC supply; XT30; male; PIN: 2; on PCBs; THT; yellow; 15A; 500V " x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="amass" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="XT30UPB-M" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="PACKAGE" value="None" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="PRICE" value="None" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=snap" x="57.15" y="-22.86" size="1.778" layer="27" display="off"/>
+</element>
+<element name="BAT2_IN" library="XT30UPB-M" package="XT30UPB-M" value="XT30UPB-M" x="53.34" y="16.51" smashed="yes">
+<attribute name="AVAILABILITY" value="Not in stock" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=eda" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" Socket; DC supply; XT30; male; PIN: 2; on PCBs; THT; yellow; 15A; 500V " x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="amass" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="XT30UPB-M" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="PACKAGE" value="None" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="PRICE" value="None" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=snap" x="85.09" y="-22.86" size="1.778" layer="27" display="off"/>
+</element>
+<element name="OUT_HEAD" library="XT30UPB-M" package="XT30UPB-M" value="XT30UPB-M" x="91.44" y="12.7" smashed="yes" rot="R270">
+<attribute name="AVAILABILITY" value="Not in stock" x="52.07" y="-31.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=eda" x="52.07" y="-31.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DESCRIPTION" value=" Socket; DC supply; XT30; male; PIN: 2; on PCBs; THT; yellow; 15A; 500V " x="52.07" y="-31.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="amass" x="52.07" y="-31.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="XT30UPB-M" x="52.07" y="-31.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PACKAGE" value="None" x="52.07" y="-31.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PRICE" value="None" x="52.07" y="-31.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=snap" x="52.07" y="-31.75" size="1.778" layer="27" rot="R270" display="off"/>
+</element>
+<element name="OUT_TAIL" library="XT30UPB-M" package="XT30UPB-M" value="XT30UPB-M" x="5.81" y="12.7" smashed="yes" rot="R270">
+<attribute name="AVAILABILITY" value="Not in stock" x="-39.91" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="CHECK_PRICES" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=eda" x="-39.91" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DESCRIPTION" value=" Socket; DC supply; XT30; male; PIN: 2; on PCBs; THT; yellow; 15A; 500V " x="-39.91" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="amass" x="-39.91" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="XT30UPB-M" x="-39.91" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PACKAGE" value="None" x="-39.91" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PRICE" value="None" x="-39.91" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/XT30UPB-M/AMASS/view-part/?ref=snap" x="-39.91" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
+</element>
+<element name="FUSE" library="UnderactuatedDorsalFin" package="SETSAFE_C1_FUSE" value="SETSAFE_C1_FUSE" x="85.09" y="13.97" smashed="yes" rot="R270"/>
+</elements>
+<signals>
+<signal name="BATT_MID">
+<contactref element="BATT1_IN" pad="P$2"/>
+<contactref element="BATT1_CONN_BO" pad="2"/>
+<contactref element="BAT2_IN" pad="P$1"/>
+<contactref element="BATT2_CONN_BO" pad="1"/>
+<polygon width="0.254" layer="1">
+<vertex x="38.1" y="5.08"/>
+<vertex x="38.1" y="20.32"/>
+<vertex x="53.34" y="20.32"/>
+<vertex x="53.34" y="3.81"/>
+<vertex x="38.1" y="3.81"/>
+</polygon>
+<wire x1="40.6" y1="16.51" x2="50.84" y2="16.51" width="3.81" layer="1"/>
+</signal>
+<signal name="GND">
+<contactref element="BATT1_IN" pad="P$1"/>
+<contactref element="BATT1_CONN_BO" pad="1"/>
+<contactref element="OUT_HEAD" pad="P$2"/>
+<contactref element="OUT_TAIL" pad="P$2"/>
+<polygon width="0.254" layer="16">
+<vertex x="0" y="0"/>
+<vertex x="0" y="25.4"/>
+<vertex x="97.79" y="25.4"/>
+<vertex x="97.79" y="0"/>
+</polygon>
+<wire x1="5.81" y1="10.2" x2="5.85" y2="10.16" width="3.81" layer="16"/>
+<wire x1="5.85" y1="10.16" x2="7.08" y2="10.16" width="3.81" layer="16"/>
+<wire x1="91.44" y1="10.2" x2="91.48" y2="10.16" width="3.81" layer="16"/>
+<wire x1="91.48" y1="10.16" x2="93.98" y2="10.16" width="3.81" layer="16"/>
+<wire x1="35.6" y1="16.51" x2="31.75" y2="16.51" width="3.81" layer="16"/>
+</signal>
+<signal name="VOUT">
+<contactref element="FUSE" pad="-"/>
+<contactref element="OUT_HEAD" pad="P$1"/>
+<contactref element="OUT_TAIL" pad="P$1"/>
+<polygon width="0.254" layer="1" rank="2">
+<vertex x="0" y="25.4"/>
+<vertex x="0" y="0"/>
+<vertex x="97.79" y="0"/>
+<vertex x="97.79" y="25.4"/>
+</polygon>
+<wire x1="86.5251" y1="12.97976875" x2="86.5251" y2="11.5951" width="3.81" layer="1"/>
+<wire x1="91.44" y1="15.2" x2="88.74533125" y2="15.2" width="3.81" layer="1"/>
+<wire x1="88.74533125" y1="15.2" x2="86.5251" y2="12.97976875" width="3.81" layer="1"/>
+<wire x1="85.09" y1="7.97" x2="86.36" y2="6.7" width="3.81" layer="1"/>
+<wire x1="86.36" y1="6.7" x2="86.36" y2="6.35" width="3.81" layer="1"/>
+<wire x1="86.36" y1="6.35" x2="84.455" y2="8.255" width="3.81" layer="1"/>
+<wire x1="84.455" y1="8.255" x2="86.36" y2="10.16" width="3.81" layer="1"/>
+<wire x1="5.81" y1="15.2" x2="5.85" y2="15.24" width="3.81" layer="1"/>
+<wire x1="5.85" y1="15.24" x2="8.35" y2="15.24" width="3.81" layer="1"/>
+</signal>
+<signal name="VOUT_PREFUSE">
+<contactref element="BAT2_IN" pad="P$2"/>
+<contactref element="FUSE" pad="+"/>
+<contactref element="BATT2_CONN_BO" pad="2"/>
+<wire x1="55.84" y1="16.51" x2="55.84" y2="6.855" width="2.54" layer="1"/>
+<wire x1="55.84" y1="6.855" x2="54.59" y2="5.605" width="2.54" layer="1"/>
+<wire x1="55.84" y1="16.51" x2="59.3" y2="19.97" width="3.81" layer="1"/>
+<wire x1="59.3" y1="19.97" x2="85.09" y2="19.97" width="3.81" layer="1"/>
+</signal>
+<signal name="N$2">
+<contactref element="BATT1_BAL_IN" pad="6"/>
+<contactref element="BAT1_BALCONN_BO" pad="6"/>
+<wire x1="66.14" y1="15.985" x2="66.14" y2="4.555" width="1.651" layer="1"/>
+</signal>
+<signal name="N$3">
+<contactref element="BATT1_BAL_IN" pad="5"/>
+<contactref element="BAT1_BALCONN_BO" pad="5"/>
+<wire x1="68.64" y1="4.555" x2="68.64" y2="15.985" width="1.651" layer="1"/>
+</signal>
+<signal name="N$4">
+<contactref element="BATT1_BAL_IN" pad="4"/>
+<contactref element="BAT1_BALCONN_BO" pad="4"/>
+<wire x1="71.14" y1="15.985" x2="71.14" y2="4.555" width="1.651" layer="1"/>
+</signal>
+<signal name="N$5">
+<contactref element="BATT1_BAL_IN" pad="3"/>
+<contactref element="BAT1_BALCONN_BO" pad="3"/>
+<wire x1="73.64" y1="4.555" x2="73.64" y2="15.985" width="1.651" layer="1"/>
+</signal>
+<signal name="N$6">
+<contactref element="BATT1_BAL_IN" pad="2"/>
+<contactref element="BAT1_BALCONN_BO" pad="2"/>
+<wire x1="76.14" y1="15.985" x2="76.14" y2="4.555" width="1.651" layer="1"/>
+</signal>
+<signal name="N$7">
+<contactref element="BATT1_BAL_IN" pad="1"/>
+<contactref element="BAT1_BALCONN_BO" pad="1"/>
+<wire x1="78.64" y1="4.555" x2="78.64" y2="15.985" width="1.651" layer="1"/>
+</signal>
+<signal name="N$8">
+<contactref element="BATT2_BAL_IN" pad="6"/>
+<contactref element="BAT2_BALCONN_BO" pad="6"/>
+<wire x1="14.07" y1="15.985" x2="14.07" y2="4.555" width="1.651" layer="1"/>
+</signal>
+<signal name="N$9">
+<contactref element="BATT2_BAL_IN" pad="5"/>
+<contactref element="BAT2_BALCONN_BO" pad="5"/>
+<wire x1="16.57" y1="15.985" x2="16.57" y2="4.555" width="1.651" layer="1"/>
+</signal>
+<signal name="N$10">
+<contactref element="BAT2_BALCONN_BO" pad="4"/>
+<contactref element="BATT2_BAL_IN" pad="4"/>
+<wire x1="19.07" y1="15.985" x2="19.07" y2="4.555" width="1.651" layer="1"/>
+</signal>
+<signal name="N$11">
+<contactref element="BATT2_BAL_IN" pad="3"/>
+<contactref element="BAT2_BALCONN_BO" pad="3"/>
+<wire x1="21.57" y1="15.985" x2="21.57" y2="4.555" width="1.651" layer="1"/>
+</signal>
+<signal name="N$12">
+<contactref element="BAT2_BALCONN_BO" pad="2"/>
+<contactref element="BATT2_BAL_IN" pad="2"/>
+<wire x1="24.07" y1="15.985" x2="24.07" y2="4.555" width="1.651" layer="1"/>
+</signal>
+<signal name="N$13">
+<contactref element="BATT2_BAL_IN" pad="1"/>
+<contactref element="BAT2_BALCONN_BO" pad="1"/>
+<wire x1="26.57" y1="15.985" x2="26.57" y2="4.555" width="1.651" layer="1"/>
+</signal>
+</signals>
+<mfgpreviewcolors>
+<mfgpreviewcolor name="soldermaskcolor" color="0xC8008000"/>
+<mfgpreviewcolor name="silkscreencolor" color="0xFFFEFEFE"/>
+<mfgpreviewcolor name="backgroundcolor" color="0xFF282828"/>
+<mfgpreviewcolor name="coppercolor" color="0xFFFFBF00"/>
+<mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
+</mfgpreviewcolors>
+</board>
+</drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
+</eagle>
