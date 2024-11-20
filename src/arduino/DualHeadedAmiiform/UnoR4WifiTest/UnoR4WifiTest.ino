@@ -11,7 +11,7 @@
 #define CAN_BAUDRATE 250000
 
 // ODrive node_id for odrv0
-#define ODRV0_NODE_ID 0
+#define ODRV0_NODE_ID 0 // Switch to 0/1 depending on for side
 
 // Uncomment below the line that corresponds to your hardware.
 // See also "Board-specific settings" to adapt the details for your hardware setup.
@@ -87,14 +87,17 @@ void onCanMessage(const CanMsg& msg) {
 }
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
+  Serial.println("Got Here");
 
   // Wait for up to 3 seconds for the serial port to be opened on the PC side.
   // If no PC connects, continue anyway.
+
   for (int i = 0; i < 30 && !Serial; ++i) {
     delay(100);
   }
   delay(200);
+  Serial.println("Got Here1");
 
 
   Serial.println("Starting ODriveCAN demo");
@@ -156,15 +159,16 @@ void setup() {
 void loop() {
   pumpEvents(can_intf); // This is required on some platforms to handle incoming feedback CAN messages
 
-  float SINE_PERIOD = 0.125f; // Period of the position command sine wave in seconds
+  float SINE_PERIOD = 0.2f; // Period of the position command sine wave in seconds
 
   float t = 0.001 * millis();
   
   float phase = t * (TWO_PI / SINE_PERIOD);
+  float amplitude = 0.1;
 
   odrv0.setPosition(
-    sin(phase), // position
-    cos(phase) * (TWO_PI / SINE_PERIOD) // velocity feedforward (optional)
+    amplitude*sin(phase), // position
+    amplitude*cos(phase) * (TWO_PI / SINE_PERIOD) // velocity feedforward (optional)
   );
 
   // print position and velocity for Serial Plotter
