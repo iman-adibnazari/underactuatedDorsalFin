@@ -11,7 +11,7 @@
 #define CAN_BAUDRATE 250000
 
 // ODrive node_id for odrv0
-#define ODRV0_NODE_ID 0 // Switch to 0/1 depending on for side
+#define ODRV0_NODE_ID 1 // Switch to 0/1 depending on for side
 
 // Uncomment below the line that corresponds to your hardware.
 // See also "Board-specific settings" to adapt the details for your hardware setup.
