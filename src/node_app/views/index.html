@@ -4,15 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robot Controller</title>
+    <!-- Add Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom styles -->
+    <style>
+        .parameter-label {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+        }
+        .subscript {
+            font-size: 0.8em;
+            vertical-align: sub;
+        }
+    </style>
     <script src="/js/app.js" defer></script>
 </head>
-<body>
-    <h1>Robot Control Panel</h1>
-    <button id="forward">Forward</button>
-    <button id="backward">Backward</button>
-    <button id="left">Left</button>
-    <button id="right">Right</button>
-    <button id="stop">Stop</button>
+<body class="bg-gray-100">
+    <div class="w-full max-w-6xl mx-auto p-6 space-y-6">
+        <h1 class="text-3xl font-bold text-center mb-8">Robot Control Panel</h1>
+        
+        <!-- Sensor Readings Section -->
+        <div class="flex justify-between items-center gap-4">
+            <!-- Left Head Readings -->
+            <div class="bg-white rounded-lg shadow-md w-64 p-4">
+                <h2 class="text-lg font-bold mb-4">Left Head Sensors</h2>
+                <div class="space-y-2">
+                    <div>
+                        <label class="block text-sm font-medium">Temperature</label>
+                        <div id="left-temp" class="text-2xl font-bold">--°C</div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Humidity</label>
+                        <div id="left-humidity" class="text-2xl font-bold">--%</div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Robot Image Placeholder -->
+            <div class="w-96 h-48 bg-gray-200 rounded-lg flex items-center justify-center">
+                <p class="text-gray-500">Robot Image Placeholder</p>
+            </div>
+
+            <!-- Right Head Readings -->
+            <div class="bg-white rounded-lg shadow-md w-64 p-4">
+                <h2 class="text-lg font-bold mb-4">Right Head Sensors</h2>
+                <div class="space-y-2">
+                    <div>
+                        <label class="block text-sm font-medium">Temperature</label>
+                        <div id="right-temp" class="text-2xl font-bold">--°C</div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Humidity</label>
+                        <div id="right-humidity" class="text-2xl font-bold">--%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Time Counter and Control Buttons -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center">
+                <div class="text-center flex-grow">
+                    <label class="text-lg font-medium">Time Counter</label>
+                    <div id="time-counter" class="text-4xl font-bold font-mono mt-2">00:00:00</div>
+                </div>
+                <div class="flex flex-col gap-4 ml-6">
+                    <div class="grid grid-cols-2 gap-4 items-center">
+                        <button id="start-button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-xl w-32">
+                            START
+                        </button>
+                        <div class="flex flex-col">
+                            <label class="text-sm font-medium text-gray-600">Start Delay (s)</label>
+                            <input type="number" id="start-delay-time" class="w-24 p-2 border rounded" value="0" min="0" step="1">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 items-center">
+                        <button id="stop-button" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl w-32">
+                            STOP
+                        </button>
+                        <div class="flex flex-col">
+                            <label class="text-sm font-medium text-gray-600">Stop Delay (s)</label>
+                            <input type="number" id="stop-delay-time" class="w-24 p-2 border rounded" value="0" min="0" step="1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gait Parameters Sets -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-bold mb-6">Gait Parameters</h2>
+            <div class="space-y-6" id="parameter-sets">
+                <!-- Parameter sets will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Parameter set template -->
+    <template id="parameter-set-template">
+        <div class="parameter-set flex items-center gap-4">
+            <div class="grid grid-cols-6 gap-4 flex-grow">
+                <div class="space-y-2">
+                    <label class="parameter-label">A<span class="subscript">f</span></label>
+                    <input type="number" class="w-full p-2 border rounded" step="0.1" data-param="A_f">
+                </div>
+                <div class="space-y-2">
+                    <label class="parameter-label">f</label>
+                    <input type="number" class="w-full p-2 border rounded" step="0.1" data-param="f">
+                </div>
+                <div class="space-y-2">
+                    <label class="parameter-label">b<span class="subscript">f</span></label>
+                    <input type="number" class="w-full p-2 border rounded" step="0.1" data-param="b_f">
+                </div>
+                <div class="space-y-2">
+                    <label class="parameter-label">A<span class="subscript">b</span></label>
+                    <input type="number" class="w-full p-2 border rounded" step="0.1" data-param="A_b">
+                </div>
+                <div class="space-y-2">
+                    <label class="parameter-label">b<span class="subscript">b</span></label>
+                    <input type="number" class="w-full p-2 border rounded" step="0.1" data-param="b_b">
+                </div>
+                <div class="space-y-2">
+                    <label class="parameter-label">φ</label>
+                    <input type="number" class="w-full p-2 border rounded" step="0.1" data-param="phi">
+                </div>
+            </div>
+            <button class="send-button bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 mt-6">
+                Send
+            </button>
+        </div>
+    </template>
 </body>
 </html>

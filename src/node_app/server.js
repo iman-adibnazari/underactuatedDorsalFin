@@ -17,63 +17,75 @@ client.on('connect', () => {
   console.log('Connected to MQTT Broker at ' + mqttHost);
 });
 
-// Middleware to serve static files
+// Middleware
 app.use(express.static('public'));
+app.use(express.json()); // For parsing JSON bodies
 
 // Routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-// API to handle direction commands
-app.post('/command/:direction', async (req, res) => {
-  const { direction } = req.params;
+// Handle start command with delay
+app.post('/start', (req, res) => {
+  const delay = req.body.delay || 0;
   const now = new Date();
-  let leftSpeed = 0;
-  let rightSpeed = 0;
-  let speedsEncoded = 0;
-
-  switch (direction) { // Set motor speeds based on direction
-    case 'FORWARD':
-      leftSpeed = 70;
-      rightSpeed = 70;
-      break;
-    case 'BACKWARD':
-      leftSpeed = -70;
-      rightSpeed = -70;
-      break;
-    case 'LEFT':
-      leftSpeed = -70;
-      rightSpeed = 70;
-      break;
-    case 'RIGHT':
-      leftSpeed = 70;
-      rightSpeed = -70;
-      break;
-    case 'STOP':
-      leftSpeed = 0;
-      rightSpeed = 0;
-      break;
-  }
-
-  // Encode speeds into single 32-bit integer
-  speedsEncoded += Math.abs(Math.floor(rightSpeed));
-  speedsEncoded += (rightSpeed < 0 ? 1000 : 0);
-  speedsEncoded += Math.abs(Math.floor(leftSpeed) * 10000);
-  speedsEncoded += (leftSpeed < 0 ? 10000000 : 0);
 
   try {
-    // await pool.query('INSERT INTO commands (direction, time_sent, left_speed, right_speed, encoded_speed, source, username) VALUES ($1, $2, $3, $4, $5, $6, $7)', [direction, now.toISOString(), leftSpeed, rightSpeed, speedsEncoded, 'webUI', 'web_user']);
-    // Publish MQTT messages
-    client.publish('motorSpeed/left', leftSpeed.toString());
-    client.publish('motorSpeed/right', rightSpeed.toString());
-    client.publish('motorSpeed/encoded', speedsEncoded.toString());
-    client.publish('robot/control', direction);
-    res.send(`Command ${direction} sent to MQTT broker at ${now}`);
+    // Publish to MQTT topic with delay
+    const message = delay.toString()+",";
+    client.publish('robot/start', message);
+    res.send(`Start command with ${delay}s delay sent to MQTT broker at ${now}`);
   } catch (err) {
-    console.error('Database error:', err);
+    console.error('Error publishing start command:', err);
     if (!res.headersSent) {
-      res.status(500).send('Failed to record command');
+      res.status(500).send('Failed to send start command');
+    }
+  }
+});
+
+// Handle stop command with delay
+app.post('/stop', (req, res) => {
+  const delay = req.body.delay || 0;
+  const now = new Date();
+
+  try {
+    // Publish to MQTT topic with delay
+    const message = delay.toString()+",";
+    client.publish('robot/stop', message);
+    res.send(`Stop command with ${delay}s delay sent to MQTT broker at ${now}`);
+  } catch (err) {
+    console.error('Error publishing stop command:', err);
+    if (!res.headersSent) {
+      res.status(500).send('Failed to send stop command');
+    }
+  }
+});
+
+// Handle gait parameters
+app.post('/send-parameters', (req, res) => {
+  const { A_f, f, b_f, A_b, b_b, phi } = req.body;
+  const now = new Date();
+
+  try {
+    // Create tuple of parameters
+    const paramTuple = [A_f, f, b_f, A_b, b_b, phi].map(Number);
+    
+    // Check if all parameters are valid numbers
+    if (paramTuple.some(isNaN)) {
+      throw new Error('Invalid parameter values');
+    }
+
+    // Convert tuple to string format
+    const paramString = paramTuple.join(',')+","; // Add a comma at the end so that strtok function on arduino knows where last value ends
+    
+    // Publish to MQTT topic
+    client.publish('robot/gait', paramString);
+    res.send(`Gait parameters sent to MQTT broker at ${now}`);
+  } catch (err) {
+    console.error('Error publishing gait parameters:', err);
+    if (!res.headersSent) {
+      res.status(500).send('Failed to send gait parameters');
     }
   }
 });
