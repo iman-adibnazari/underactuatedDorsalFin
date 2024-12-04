@@ -30,10 +30,15 @@ float A_b = 0;
 float b_b = 0;
 float phi = 0;
 
-// Initialize flag for if robot should run or not
-bool run = 0;
-float startDelay = 0;
+// Initialize flags and variables for finite state machine that define if robot should run or not
+bool isRunning = false;
+bool runFlag = false;
+float startDelay = 0; 
 float stopDelay = 0;
+
+long startDelayTime = 0;
+long stopDelayTime = 0;
+
 
 // Initialize buffer for holding received MQTT messages
 
@@ -102,45 +107,26 @@ void loop() {
   // call poll() regularly to allow the library to send MQTT keep alive which
   // avoids being disconnected by the broker
   mqttClient.poll();
+  // Check if start/stop state needs to be switched
+  stepFSM();
+  // Calculate finray angle
+  if (isRunning==true){
+    // compute finray angles from gait parameters
+    Serial.println("RUNNING");
 
-  // unsigned long currentMillis = millis();
+  }
+  else{
+    // set finray angles to 0
+    Serial.println("STOPPED");
+    
+  }
+  // TODO: Send joint angles over CAN bus
 
-  // if (currentMillis - previousMillis >= interval) {
-  //   // save the last time a message was sent
-  //   previousMillis = currentMillis;
 
-  //   //record random value from A0, A1 and A2
-  //   int Rvalue = analogRead(A0);
-  //   int Rvalue2 = analogRead(A1);
-  //   int Rvalue3 = analogRead(A2);
+  // TODO: Sensing/sending data back 
 
-  //   Serial.print("Sending message to topic: ");
-  //   Serial.println(topic);
-  //   Serial.println(Rvalue);
 
-  //   Serial.print("Sending message to topic: ");
-  //   Serial.println(topic2);
-  //   Serial.println(Rvalue2);
 
-  //   Serial.print("Sending message to topic: ");
-  //   Serial.println(topic2);
-  //   Serial.println(Rvalue3);
-
-  //   // send message, the Print interface can be used to set the message contents
-  //   mqttClient.beginMessage(topic);
-  //   mqttClient.print(Rvalue);
-  //   mqttClient.endMessage();
-
-  //   mqttClient.beginMessage(topic2);
-  //   mqttClient.print(Rvalue2);
-  //   mqttClient.endMessage();
-
-  //   mqttClient.beginMessage(topic3);
-  //   mqttClient.print(Rvalue3);
-  //   mqttClient.endMessage();
-
-  //   Serial.println();
-  // }
 }
 
 
@@ -159,7 +145,7 @@ void onMqttMessage(int messageSize) {
 }
 
 void startTopicHandler(){
-  Serial.println("Got a start topic here");
+  // Serial.println("Got a start topic here");
   // Dump whole message into buffer
   int buffIndex = 0;
   while (mqttClient.available()) {
@@ -176,19 +162,24 @@ void startTopicHandler(){
     // Handle error - not enough values in message
     startDelay = 0.0;  // or some error value
   }
+  // Set variables for finite state machine controlling start/stop state
+  runFlag = true; // Set runflag to true
+  startDelayTime = millis() + long(startDelay*1000.0);
+  Serial.print("Current time: ");
+  Serial.print(millis());
+  Serial.print(" Starting in ");
+  Serial.print(startDelay);
+  Serial.print("seconds at: ");
+  Serial.println(startDelayTime);
 
-  Serial.print("Start Delay: ");
-  Serial.println(startDelay);
 
-  // Serial.println("Dumping Buffer");
-  // for(int i=0;i<buffIndex;i++){
-  // Serial.print(MQTTReceiveBuffer[i]);
-  // }
-  // Serial.println();
 
+
+  // Serial.print("Start Delay: ");
+  // Serial.println(startDelay);
 }
 void stopTopicHandler(){
-  Serial.println("Got a stop topic here");
+  // Serial.println("Got a stop topic here");
   // Dump whole message into buffer
   int buffIndex = 0;
   while (mqttClient.available()) {
@@ -206,30 +197,28 @@ void stopTopicHandler(){
     // Handle error - not enough values in message
     stopDelay = 0.0; // or some error value
   }
-  Serial.print("Stop Delay: ");
-  Serial.println(stopDelay);
 
+    // Set variables for finite state machine controlling start/stop state
+  runFlag = false; // Set runflag to false
+  stopDelayTime = millis() + long(stopDelay*1000.0);
+  Serial.print("Current time: ");
+  Serial.print(millis());
+  Serial.print(" Stopping in ");
+  Serial.print(stopDelay);
+  Serial.print("seconds at: ");
+  Serial.println(stopDelayTime);
 
-  // Serial.println("Dumping Buffer");
-  // for(int i=0;i<buffIndex;i++){
-  // Serial.print(MQTTReceiveBuffer[i]);
-  // }
-  // Serial.println();
-
+  // Serial.print("Stop Delay: ");
+  // Serial.println(stopDelay);
 }
 void gaitTopicHandler(){
-  Serial.println("Got a gait topic here");
+  // Serial.println("Got a gait topic here");
   // Dump whole message into buffer
   int buffIndex = 0;
   while (mqttClient.available()) {
     MQTTReceiveBuffer[buffIndex] = (char)mqttClient.read();
     buffIndex++;
   }
-  Serial.println("Printing Contents of Buffer");
-  for(int i=0;i<buffIndex;i++){
-  Serial.print(MQTTReceiveBuffer[i]);
-  }
-  Serial.println();
   parseMessage(MQTTReceiveBuffer); // read in the gait parameters from the message
 
 }
@@ -259,20 +248,33 @@ void parseMessage(char* message) {
   b_b = values[4]; 
   phi = values[5]; 
 
-  // print off all values
+  // // print off all values
 
-  Serial.print("A_f: ");
-  Serial.print(A_f);
-  Serial.print(" f: ");
-  Serial.print(f);
-  Serial.print(" b_f: ");
-  Serial.print(b_f);
-  Serial.print(" A_b: ");
-  Serial.print(A_b);
-  Serial.print(" b_b: ");
-  Serial.print(b_b);
-  Serial.print(" phi: ");
-  Serial.println(phi);
+  // Serial.print("A_f: ");
+  // Serial.print(A_f);
+  // Serial.print(" f: ");
+  // Serial.print(f);
+  // Serial.print(" b_f: ");
+  // Serial.print(b_f);
+  // Serial.print(" A_b: ");
+  // Serial.print(A_b);
+  // Serial.print(" b_b: ");
+  // Serial.print(b_b);
+  // Serial.print(" phi: ");
+  // Serial.println(phi);
+}
+
+void stepFSM(){
+  long time = millis();
+  // check state switching conditions
+  if (isRunning&&(!runFlag)&&(time-stopDelayTime>=0)){ // if currently running, commanded to stop, and if delay period has passed, then switch to stop state
+    isRunning = false;
+  } 
+  if ((!isRunning)&&runFlag&&(time-startDelayTime>=0)){ // if currently stopped, commanded to run, and if delay period has passed, then switch to running state
+    isRunning = true;
+  } 
 
 }
+
+
 
