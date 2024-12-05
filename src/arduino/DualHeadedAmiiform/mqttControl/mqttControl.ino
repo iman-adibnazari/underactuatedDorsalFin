@@ -1,6 +1,8 @@
 #include <ArduinoMqttClient.h>
 #include "WiFiS3.h"
 #include "arduino_secrets.h"
+#define PI 3.1415926535897932384626433832795
+
 
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
@@ -30,6 +32,12 @@ float A_b = 0;
 float b_b = 0;
 float phi = 0;
 
+// Initialize variables to hold finray angles and velocities
+float theta_f = 0;
+float theta_b = 0;
+float thetad_f = 0;
+float thetad_b = 0;
+
 // Initialize flags and variables for finite state machine that define if robot should run or not
 bool isRunning = false;
 bool runFlag = false;
@@ -38,6 +46,10 @@ float stopDelay = 0;
 
 long startDelayTime = 0;
 long stopDelayTime = 0;
+
+// time variable for running gaits 
+long startedRunningTime = 0;
+
 
 
 // Initialize buffer for holding received MQTT messages
@@ -48,7 +60,7 @@ char MQTTReceiveBuffer[50]; // buffer is 50 bytes
 
 void setup() {
   //Initialize serial and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -111,16 +123,40 @@ void loop() {
   stepFSM();
   // Calculate finray angle
   if (isRunning==true){
+    float time = float(millis()-startedRunningTime)/1000.0; // seconds
     // compute finray angles from gait parameters
-    Serial.println("RUNNING");
+    theta_f = A_f*sin(2*PI*f*time) + b_f;
+    theta_b = A_f*sin(2*PI*f*time + phi)+ b_b;
+
+    thetad_f = A_f*2*PI*f*cos(2*PI*f*time);
+    thetad_b = A_f*2*PI*f*cos(2*PI*f*time+phi);
+
+    // Serial.println("RUNNING");
 
   }
   else{
     // set finray angles to 0
-    Serial.println("STOPPED");
+    // Serial.println("STOPPED");
+    theta_f = 0;
+    theta_b = 0;
+    thetad_f = 0;
+    thetad_b = 0;
     
   }
   // TODO: Send joint angles over CAN bus
+    // Serial.print("theta_f: ");
+    Serial.print(theta_f);
+    // Serial.print(", theta_b: ");
+    Serial.print("\t");
+    Serial.print(theta_b);
+    // Serial.print(", thetad_f: ");
+    Serial.print("\t");
+    Serial.print(thetad_f);
+    // Serial.print(", thetad_b: ");
+    Serial.print("\t");
+    Serial.println(thetad_b);
+    
+
 
 
   // TODO: Sensing/sending data back 
@@ -165,18 +201,15 @@ void startTopicHandler(){
   // Set variables for finite state machine controlling start/stop state
   runFlag = true; // Set runflag to true
   startDelayTime = millis() + long(startDelay*1000.0);
-  Serial.print("Current time: ");
-  Serial.print(millis());
-  Serial.print(" Starting in ");
-  Serial.print(startDelay);
-  Serial.print("seconds at: ");
-  Serial.println(startDelayTime);
+  // Serial.print("Current time: ");
+  // Serial.print(millis());
+  // Serial.print(" Starting in ");
+  // Serial.print(startDelay);
+  // Serial.print("seconds at: ");
+  // Serial.println(startDelayTime);
 
 
 
-
-  // Serial.print("Start Delay: ");
-  // Serial.println(startDelay);
 }
 void stopTopicHandler(){
   // Serial.println("Got a stop topic here");
@@ -201,15 +234,12 @@ void stopTopicHandler(){
     // Set variables for finite state machine controlling start/stop state
   runFlag = false; // Set runflag to false
   stopDelayTime = millis() + long(stopDelay*1000.0);
-  Serial.print("Current time: ");
-  Serial.print(millis());
-  Serial.print(" Stopping in ");
-  Serial.print(stopDelay);
-  Serial.print("seconds at: ");
-  Serial.println(stopDelayTime);
-
-  // Serial.print("Stop Delay: ");
-  // Serial.println(stopDelay);
+  // Serial.print("Current time: ");
+  // Serial.print(millis());
+  // Serial.print(" Stopping in ");
+  // Serial.print(stopDelay);
+  // Serial.print("seconds at: ");
+  // Serial.println(stopDelayTime);
 }
 void gaitTopicHandler(){
   // Serial.println("Got a gait topic here");
@@ -272,6 +302,7 @@ void stepFSM(){
   } 
   if ((!isRunning)&&runFlag&&(time-startDelayTime>=0)){ // if currently stopped, commanded to run, and if delay period has passed, then switch to running state
     isRunning = true;
+    startedRunningTime= millis();
   } 
 
 }
