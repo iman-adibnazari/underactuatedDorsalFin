@@ -66,6 +66,7 @@ struct ODriveUserData {
 
 // Keep some application-specific user data for every ODrive.
 ODriveUserData odrv0_user_data;
+ODriveUserData odrv1_user_data;
 
 // Called every time a Heartbeat message arrives from the ODrive
 void onHeartbeat(Heartbeat_msg_t& msg, void* user_data) {
@@ -90,7 +91,7 @@ void onCanMessage(const CanMsg& msg) {
 
 void setup() {
   delay(3000);
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("Got Here");
 
   // Wait for up to 3 seconds for the serial port to be opened on the PC side.
@@ -107,7 +108,9 @@ void setup() {
 
   // Register callbacks for the heartbeat and encoder feedback messages
   odrv0.onFeedback(onFeedback, &odrv0_user_data);
-  odrv0.onStatus(onHeartbeat, &odrv0_user_data);
+  odrv0.onStatus(onHeartbeat, &odrv0_user_data);  
+  odrv1.onFeedback(onFeedback, &odrv1_user_data);
+  odrv1.onStatus(onHeartbeat, &odrv1_user_data);
 
   // Configure and initialize the CAN bus interface. This function depends on
   // your hardware and the CAN stack that you're using.
@@ -116,13 +119,18 @@ void setup() {
     while (true); // spin indefinitely
   }
 
-  Serial.println("Waiting for ODrive...");
+  Serial.println("Waiting for ODrive 0...");
   while (!odrv0_user_data.received_heartbeat) {
     pumpEvents(can_intf);
     delay(100);
   }
+Serial.println("Waiting for ODrive 1...");
+  while (!odrv1_user_data.received_heartbeat) {
+    pumpEvents(can_intf);
+    delay(100);
+  }
 
-  Serial.println("found ODrive");
+  Serial.println("found ODrives!");
 
   // request bus voltage and current (1sec timeout)
   Serial.println("attempting to read bus voltage and current");
@@ -137,12 +145,28 @@ void setup() {
   Serial.print("DC current [A]: ");
   Serial.println(vbus.Bus_Current);
 
-  Serial.println("Enabling closed loop control...");
+  Serial.println("Enabling closed loop control for ODrive 0...");
   while (odrv0_user_data.last_heartbeat.Axis_State != ODriveAxisState::AXIS_STATE_CLOSED_LOOP_CONTROL) {
     odrv0.clearErrors();
     delay(1);
     odrv0.setState(ODriveAxisState::AXIS_STATE_CLOSED_LOOP_CONTROL);
-
+    // Pump events for 150ms. This delay is needed for two reasons;
+    // 1. If there is an error condition, such as missing DC power, the ODrive might
+    //    briefly attempt to enter CLOSED_LOOP_CONTROL state, so we can't rely
+    //    on the first heartbeat response, so we want to receive at least two
+    //    heartbeats (100ms default interval).
+    // 2. If the bus is congested, the setState command won't get through
+    //    immediately but can be delayed.
+    for (int i = 0; i < 15; ++i) {
+      delay(10);
+      pumpEvents(can_intf);
+    }
+  }
+  Serial.println("Enabling closed loop control for ODrive 1...");
+  while (odrv1_user_data.last_heartbeat.Axis_State != ODriveAxisState::AXIS_STATE_CLOSED_LOOP_CONTROL) {
+    odrv1.clearErrors();
+    delay(1);
+    odrv1.setState(ODriveAxisState::AXIS_STATE_CLOSED_LOOP_CONTROL);
     // Pump events for 150ms. This delay is needed for two reasons;
     // 1. If there is an error condition, such as missing DC power, the ODrive might
     //    briefly attempt to enter CLOSED_LOOP_CONTROL state, so we can't rely
@@ -156,7 +180,7 @@ void setup() {
     }
   }
 
-  Serial.println("ODrive running!");
+  Serial.println("ODrives running!");
 }
 
 void loop() {
@@ -173,6 +197,12 @@ void loop() {
     amplitude*sin(phase), // position
     amplitude*cos(phase) * (TWO_PI / SINE_PERIOD) // velocity feedforward (optional)
   );
+  delay(2);
+  odrv1.setPosition(
+    amplitude*sin(phase), // position
+    amplitude*cos(phase) * (TWO_PI / SINE_PERIOD) // velocity feedforward (optional)
+  );
+  delay(2);
 
   // print position and velocity for Serial Plotter
   if (odrv0_user_data.received_feedback) {
@@ -182,6 +212,15 @@ void loop() {
     Serial.print(feedback.Pos_Estimate);
     Serial.print(",");
     Serial.print("odrv0-vel:");
+    Serial.println(feedback.Vel_Estimate);
+  }
+  if (odrv1_user_data.received_feedback) {
+    Get_Encoder_Estimates_msg_t feedback = odrv1_user_data.last_feedback;
+    odrv1_user_data.received_feedback = false;
+    Serial.print("odrv1-pos:");
+    Serial.print(feedback.Pos_Estimate);
+    Serial.print(",");
+    Serial.print("odrv1-vel:");
     Serial.println(feedback.Vel_Estimate);
   }
 }

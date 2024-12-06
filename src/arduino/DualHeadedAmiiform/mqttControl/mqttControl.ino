@@ -1,3 +1,6 @@
+#include <Arduino.h>
+#include "ODriveCAN.h"
+
 #include <ArduinoMqttClient.h>
 #include "WiFiS3.h"
 #include "arduino_secrets.h"
@@ -56,6 +59,9 @@ long startedRunningTime = 0;
 
 char MQTTReceiveBuffer[50]; // buffer is 50 bytes
 
+
+/* ------------- CAN SETUP  -------------  */
+// TODO: Finish setting up CAN for both odrives using the dualOdriveTest exmample code
 
 
 void setup() {
