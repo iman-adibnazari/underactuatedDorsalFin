@@ -62,15 +62,179 @@ char MQTTReceiveBuffer[50]; // buffer is 50 bytes
 
 /* ------------- CAN SETUP  -------------  */
 // TODO: Finish setting up CAN for both odrives using the dualOdriveTest exmample code
+// CAN bus baudrate. Make sure this matches for every device on the bus
+#define CAN_BAUDRATE 250000
 
+// ODrive node_id for odrv0
+#define ODRV0_NODE_ID 0
+#define ODRV1_NODE_ID 1
+
+// Uncomment below the line that corresponds to your hardware.
+// See also "Board-specific settings" to adapt the details for your hardware setup.
+
+// #define IS_TEENSY_BUILTIN // Teensy boards with built-in CAN interface (e.g. Teensy 4.1). See below to select which interface to use.
+#define IS_ARDUINO_BUILTIN // Arduino boards with built-in CAN interface (e.g. Arduino Uno R4 Minima)
+// #define IS_MCP2515 // Any board with external MCP2515 based extension module. See below to configure the module.
+
+
+/* Board-specific includes ---------------------------------------------------*/
+
+
+// See https://github.com/arduino/ArduinoCore-API/blob/master/api/HardwareCAN.h
+// and https://github.com/arduino/ArduinoCore-renesas/tree/main/libraries/Arduino_CAN
+
+#include <Arduino_CAN.h>
+#include <ODriveHardwareCAN.hpp>
+
+
+
+
+
+/* Board-specific settings ---------------------------------------------------*/
+
+
+
+/* Arduinos with built-in CAN */
+
+
+HardwareCAN& can_intf = CAN;
+
+bool setupCan() {
+  return can_intf.begin((CanBitRate)CAN_BAUDRATE);
+}
+
+
+
+/* Example sketch ------------------------------------------------------------*/
+
+// Instantiate ODrive objects
+ODriveCAN odrv0(wrap_can_intf(can_intf), ODRV0_NODE_ID); // Standard CAN message ID
+ODriveCAN odrv1(wrap_can_intf(can_intf), ODRV1_NODE_ID); // Standard CAN message ID
+ODriveCAN* odrives[] = {&odrv0,&odrv1}; // Make sure all ODriveCAN instances are accounted for here
+
+struct ODriveUserData {
+  Heartbeat_msg_t last_heartbeat;
+  bool received_heartbeat = false;
+  Get_Encoder_Estimates_msg_t last_feedback;
+  bool received_feedback = false;
+};
+
+// Keep some application-specific user data for every ODrive.
+ODriveUserData odrv0_user_data;
+ODriveUserData odrv1_user_data;
+
+// Called every time a Heartbeat message arrives from the ODrive
+void onHeartbeat(Heartbeat_msg_t& msg, void* user_data) {
+  ODriveUserData* odrv_user_data = static_cast<ODriveUserData*>(user_data);
+  odrv_user_data->last_heartbeat = msg;
+  odrv_user_data->received_heartbeat = true;
+}
+
+// Called every time a feedback message arrives from the ODrive
+void onFeedback(Get_Encoder_Estimates_msg_t& msg, void* user_data) {
+  ODriveUserData* odrv_user_data = static_cast<ODriveUserData*>(user_data);
+  odrv_user_data->last_feedback = msg;
+  odrv_user_data->received_feedback = true;
+}
+
+// Called for every message that arrives on the CAN bus
+void onCanMessage(const CanMsg& msg) {
+  for (auto odrive: odrives) {
+    onReceive(msg, *odrive);
+  }
+}
 
 void setup() {
   //Initialize serial and wait for port to open:
+  delay(3000);
   Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
+  Serial.println("Got here");
+    // delay(10000);
 
+  /* --- CAN SETUP --- */
+  Serial.println("Starting ODriveCAN");
+
+  // Register callbacks for the heartbeat and encoder feedback messages
+  odrv0.onFeedback(onFeedback, &odrv0_user_data);
+  odrv0.onStatus(onHeartbeat, &odrv0_user_data);  
+  odrv1.onFeedback(onFeedback, &odrv1_user_data);
+  odrv1.onStatus(onHeartbeat, &odrv1_user_data);
+
+  // Configure and initialize the CAN bus interface. This function depends on
+  // your hardware and the CAN stack that you're using.
+  if (!setupCan()) {
+    Serial.println("CAN failed to initialize: reset required");
+    while (true); // spin indefinitely
+  }
+
+  Serial.println("Waiting for ODrive 0...");
+  while (!odrv0_user_data.received_heartbeat) {
+    pumpEvents(can_intf);
+    delay(100);
+  }
+  Serial.println("Waiting for ODrive 1...");
+  while (!odrv1_user_data.received_heartbeat) {
+    pumpEvents(can_intf);
+    delay(100);
+  }
+
+  Serial.println("found ODrives!");
+
+  // request bus voltage and current (1sec timeout)
+  Serial.println("attempting to read bus voltage and current");
+  Get_Bus_Voltage_Current_msg_t vbus;
+  if (!odrv0.request(vbus, 1)) {
+    Serial.println("vbus request failed!");
+    while (true); // spin indefinitely
+  }
+
+  Serial.print("DC voltage [V]: ");
+  Serial.println(vbus.Bus_Voltage);
+  Serial.print("DC current [A]: ");
+  Serial.println(vbus.Bus_Current);
+
+  Serial.println("Enabling closed loop control for ODrive 0...");
+  while (odrv0_user_data.last_heartbeat.Axis_State != ODriveAxisState::AXIS_STATE_CLOSED_LOOP_CONTROL) {
+    odrv0.clearErrors();
+    delay(1);
+    odrv0.setState(ODriveAxisState::AXIS_STATE_CLOSED_LOOP_CONTROL);
+    // Pump events for 150ms. This delay is needed for two reasons;
+    // 1. If there is an error condition, such as missing DC power, the ODrive might
+    //    briefly attempt to enter CLOSED_LOOP_CONTROL state, so we can't rely
+    //    on the first heartbeat response, so we want to receive at least two
+    //    heartbeats (100ms default interval).
+    // 2. If the bus is congested, the setState command won't get through
+    //    immediately but can be delayed.
+    for (int i = 0; i < 15; ++i) {
+      delay(10);
+      pumpEvents(can_intf);
+    }
+  }
+  Serial.println("Enabling closed loop control for ODrive 1...");
+  while (odrv1_user_data.last_heartbeat.Axis_State != ODriveAxisState::AXIS_STATE_CLOSED_LOOP_CONTROL) {
+    odrv1.clearErrors();
+    delay(1);
+    odrv1.setState(ODriveAxisState::AXIS_STATE_CLOSED_LOOP_CONTROL);
+    // Pump events for 150ms. This delay is needed for two reasons;
+    // 1. If there is an error condition, such as missing DC power, the ODrive might
+    //    briefly attempt to enter CLOSED_LOOP_CONTROL state, so we can't rely
+    //    on the first heartbeat response, so we want to receive at least two
+    //    heartbeats (100ms default interval).
+    // 2. If the bus is congested, the setState command won't get through
+    //    immediately but can be delayed.
+    for (int i = 0; i < 15; ++i) {
+      delay(10);
+      pumpEvents(can_intf);
+    }
+  }
+
+  Serial.println("ODrives running!");
+
+  /* --- MQTT SETUP --- */
+  
   // attempt to connect to Wifi network:
   Serial.print("Attempting to connect to WPA SSID: ");
   Serial.println(ssid);
@@ -80,17 +244,27 @@ void setup() {
     delay(5000);
   }
 
+
+
   Serial.println("You're connected to the network");
   Serial.println();
 
   Serial.print("Attempting to connect to the MQTT broker: ");
   Serial.println(broker);
-
-  if (!mqttClient.connect(broker, port)) {
-    Serial.print("MQTT connection failed! Error code = ");
+  unsigned int reconnectTime=3000;
+  unsigned int mqttAttempts = 0;
+  while (!mqttClient.connect(broker, port)) {
+    mqttAttempts++;
+    Serial.print("MQTT connection attempt ");
+    Serial.print(mqttAttempts);
+    Serial.print(" failed! Error code = ");
     Serial.println(mqttClient.connectError());
+    delay(reconnectTime);
+    reconnectTime+=1000;
+    
+    
 
-    while (1);
+    // while (1);
   }
 
   Serial.println("You're connected to the MQTT broker!");
@@ -127,20 +301,57 @@ void loop() {
   mqttClient.poll();
   // Check if start/stop state needs to be switched
   stepFSM();
+  pumpEvents(can_intf); // This is required on some platforms to handle incoming feedback CAN messages
+
   // Calculate finray angle
   if (isRunning==true){
     float time = float(millis()-startedRunningTime)/1000.0; // seconds
     // compute finray angles from gait parameters
     theta_f = A_f*sin(2*PI*f*time) + b_f;
-    theta_b = A_f*sin(2*PI*f*time + phi)+ b_b;
+    theta_b = A_b*sin(2*PI*f*time + phi)+ b_b;
 
     thetad_f = A_f*2*PI*f*cos(2*PI*f*time);
-    thetad_b = A_f*2*PI*f*cos(2*PI*f*time+phi);
+    thetad_b = A_b*2*PI*f*cos(2*PI*f*time+phi);
 
     // Serial.println("RUNNING");
+  //   float SINE_PERIOD = 0.2f; // Period of the position command sine wave in seconds
+
+  // float t = 0.001 * millis();
+  
+  // float phase = t * (TWO_PI / SINE_PERIOD);
+  // float amplitude = 0.05;
+
+  // odrv0.setPosition(
+  //   amplitude*sin(phase), // position
+  //   amplitude*cos(phase) * (TWO_PI / SINE_PERIOD) // velocity feedforward (optional)
+  // );
+  // delay(2);
+  // odrv1.setPosition(
+  //   amplitude*sin(phase), // position
+  //   amplitude*cos(phase) * (TWO_PI / SINE_PERIOD) // velocity feedforward (optional)
+  // );
+  // delay(2);
 
   }
   else{
+  // float SINE_PERIOD = 0.2f; // Period of the position command sine wave in seconds
+
+  // float t = 0.001 * millis();
+  
+  // float phase = t * (TWO_PI / SINE_PERIOD);
+  // float amplitude = 0.01;
+
+  // odrv0.setPosition(
+  //   amplitude*sin(phase), // position
+  //   amplitude*cos(phase) * (TWO_PI / SINE_PERIOD) // velocity feedforward (optional)
+  // );
+  // delay(2);
+  // odrv1.setPosition(
+  //   amplitude*sin(phase), // position
+  //   amplitude*cos(phase) * (TWO_PI / SINE_PERIOD) // velocity feedforward (optional)
+  // );
+  // delay(2);
+
     // set finray angles to 0
     // Serial.println("STOPPED");
     theta_f = 0;
@@ -149,23 +360,52 @@ void loop() {
     thetad_b = 0;
     
   }
-  // TODO: Send joint angles over CAN bus
-    // Serial.print("theta_f: ");
-    Serial.print(theta_f);
-    // Serial.print(", theta_b: ");
-    Serial.print("\t");
-    Serial.print(theta_b);
-    // Serial.print(", thetad_f: ");
-    Serial.print("\t");
-    Serial.print(thetad_f);
-    // Serial.print(", thetad_b: ");
-    Serial.print("\t");
-    Serial.println(thetad_b);
+  // // TODO: Send joint angles over CAN bus
+  // // Serial.print("theta_f: ");
+  // Serial.print(theta_f);
+  // // Serial.print(", theta_b: ");
+  // Serial.print("\t");
+  // Serial.print(theta_b);
+  // // Serial.print(", thetad_f: ");
+  // Serial.print("\t");
+  // Serial.print(thetad_f);
+  // // Serial.print(", thetad_b: ");
+  // Serial.print("\t");
+  // Serial.println(thetad_b);
     
-
-
+  odrv0.setPosition(
+    theta_f, // position
+    thetad_f // velocity feedforward (optional)
+  );
+  delay(2);
+  odrv1.setPosition(
+    theta_b, // position
+    thetad_b // velocity feedforward (optional)
+  );
+  delay(2);
 
   // TODO: Sensing/sending data back 
+
+    // print position and velocity for Serial Plotter
+  if (odrv0_user_data.received_feedback) {
+    Get_Encoder_Estimates_msg_t feedback = odrv0_user_data.last_feedback;
+    odrv0_user_data.received_feedback = false;
+    Serial.print("odrv0-pos:");
+    Serial.print(feedback.Pos_Estimate);
+    Serial.print(",");
+    Serial.print("odrv0-vel:");
+    Serial.println(feedback.Vel_Estimate);
+  }
+  if (odrv1_user_data.received_feedback) {
+    Get_Encoder_Estimates_msg_t feedback = odrv1_user_data.last_feedback;
+    odrv1_user_data.received_feedback = false;
+    Serial.print("odrv1-pos:");
+    Serial.print(feedback.Pos_Estimate);
+    Serial.print(",");
+    Serial.print("odrv1-vel:");
+    Serial.println(feedback.Vel_Estimate);
+  }
+
 
 
 

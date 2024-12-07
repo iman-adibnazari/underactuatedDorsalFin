@@ -104,7 +104,7 @@ void setup() {
   Serial.println("Got Here1");
 
 
-  Serial.println("Starting ODriveCAN demo");
+  Serial.println("Starting ODriveCAN");
 
   // Register callbacks for the heartbeat and encoder feedback messages
   odrv0.onFeedback(onFeedback, &odrv0_user_data);
@@ -191,7 +191,7 @@ void loop() {
   float t = 0.001 * millis();
   
   float phase = t * (TWO_PI / SINE_PERIOD);
-  float amplitude = 0.0;
+  float amplitude = 0.05;
 
   odrv0.setPosition(
     amplitude*sin(phase), // position
