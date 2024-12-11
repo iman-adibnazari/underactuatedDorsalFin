@@ -4,7 +4,7 @@ const template = document.getElementById('parameter-set-template');
 const timeCounter = document.getElementById('time-counter');
 
 // Initialize parameter sets
-function initializeParameterSets(numSets = 3) {
+function initializeParameterSets(numSets = 5) {
     for (let i = 0; i < numSets; i++) {
         const clone = template.content.cloneNode(true);
         const parameterSet = clone.querySelector('.parameter-set');
